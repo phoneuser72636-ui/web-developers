@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-Sitemap: https://webdevelopers.pages.dev/sitemap.xml
+Sitemap: https://web-developers-ew3.pages.dev/sitemap.xml
