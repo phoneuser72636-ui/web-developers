@@ -8,7 +8,7 @@ window.SITE_CONFIG = {
   brand: {
     name: "Web Developers",
     tagline: "Building ideas online",
-    location: "Gokak, Karnataka 591307",
+    location: "Vivekanand Nagar 4th cross, Gokak, Karnataka 591307",
     region: "Gokak • Belagavi • North Karnataka",
     phoneDisplay: "+91 98603 89030",
     phoneRaw: "919860389030",
@@ -265,6 +265,6 @@ window.SITE_CONFIG = {
     headline: "Ready to be the most popular shop in town?",
     subheadline: "Message us on WhatsApp. We'll check your Google ranking and share a custom preview plan for your business.",
     cta: "Message on WhatsApp (+91 98603 89030) →",
-    phoneNote: "Direct line: +91 98603 89030 • Varadai Complex, Gokak",
+    phoneNote: "Direct line: +91 98603 89030 • Vivekanand Nagar 4th cross, Gokak",
   }
 };
