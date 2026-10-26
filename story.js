@@ -1,0 +1,698 @@
+// =============================================================================
+// Web Developers — Award-Caliber Scrollytelling Choreography Engine
+// Tech: GSAP + ScrollTrigger + Lenis smooth scroll + Split-Text reveals + Tilt
+// =============================================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const config = window.SITE_CONFIG || {};
+
+  // 1. Initialize Lenis Smooth Scroll
+  let lenis = null;
+  const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (typeof Lenis !== "undefined" && !isReduced) {
+    lenis = new Lenis({
+      lerp: 0.09,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.2,
+      smoothWheel: true,
+      smoothTouch: false,
+    });
+
+    // Synchronize Lenis with GSAP ScrollTrigger
+    if (typeof ScrollTrigger !== "undefined") {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+  }
+
+  // 2. Preloader Animation (Under 1.4s)
+  const preloader = document.getElementById("preloader");
+  const preloaderCount = document.getElementById("preloader-count");
+  if (preloader && preloaderCount) {
+    let count = 0;
+    const interval = setInterval(() => {
+      count += 7;
+      if (count > 100) count = 100;
+      preloaderCount.textContent = count + "%";
+      if (count === 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          preloader.classList.add("hide");
+          triggerHeroEntrance();
+        }, 300);
+      }
+    }, 45);
+  } else {
+    triggerHeroEntrance();
+  }
+
+  // 3. Hero Masked Entrance Reveal
+  function triggerHeroEntrance() {
+    if (typeof gsap === "undefined") return;
+
+    gsap.from(".hero-line-mask .hero-headline span", {
+      y: "115%",
+      duration: 1.1,
+      ease: "power3.out",
+      stagger: 0.12,
+      delay: 0.2
+    });
+
+    gsap.from(".hero-subheadline", {
+      opacity: 0,
+      y: 20,
+      duration: 0.9,
+      ease: "power3.out",
+      delay: 0.6
+    });
+
+    gsap.from(".hero-cta-row", {
+      opacity: 0,
+      y: 18,
+      duration: 0.9,
+      ease: "power3.out",
+      delay: 0.8
+    });
+
+    gsap.from("#peeking-phone", {
+      y: 120,
+      opacity: 0.4,
+      duration: 1.2,
+      ease: "power3.out",
+      delay: 0.5
+    });
+  }
+
+  // 4. Custom Desktop Magnetic Micro-Halo Cursor
+  const cursor = document.getElementById("custom-cursor");
+  if (cursor && window.matchMedia("(pointer: fine)").matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let curX = mouseX;
+    let curY = mouseY;
+
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    window.addEventListener("mousedown", () => {
+      cursor.classList.add("cursor-clicking");
+    });
+    window.addEventListener("mouseup", () => {
+      cursor.classList.remove("cursor-clicking");
+    });
+
+    function renderCursor() {
+      if (document.body.classList.contains("modal-open")) {
+        cursor.style.opacity = "0";
+      } else {
+        curX += (mouseX - curX) * 0.22;
+        curY += (mouseY - curY) * 0.22;
+        cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
+      }
+      requestAnimationFrame(renderCursor);
+    }
+    requestAnimationFrame(renderCursor);
+
+    document.addEventListener("mouseleave", () => {
+      cursor.style.opacity = "0";
+    });
+    document.addEventListener("mouseenter", () => {
+      if (!document.body.classList.contains("modal-open")) {
+        cursor.style.opacity = "1";
+      }
+    });
+
+    // Smooth halo hover states — Never covers or obscures button text
+    document.querySelectorAll("a, button, .interactive-hover").forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        if (el.classList.contains("btn-wa-pill") || el.classList.contains("btn-huge-wa") || el.dataset.cursor === "whatsapp") {
+          cursor.classList.add("cursor-hover-wa");
+        } else {
+          cursor.classList.add("cursor-hover");
+        }
+      });
+      el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("cursor-hover-wa");
+        cursor.classList.remove("cursor-hover");
+      });
+    });
+  }
+
+  // Clean Smooth Scroll for Internal Anchors (No ugly #hash in browser URL)
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", function(e) {
+      const href = this.getAttribute("href");
+      if (!href || href === "#") return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        if (window.lenis && typeof window.lenis.scrollTo === "function") {
+          window.lenis.scrollTo(target, { offset: -40, duration: 1.2 });
+        } else {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, null, window.location.pathname + window.location.search);
+        }
+      }
+    });
+  });
+
+  // 5. Reading Progress Bar & Minimal Sticky Nav (Robust Hysteresis — No Jitter / Glitch)
+  const progressBar = document.getElementById("reading-progress");
+  const siteHeader = document.getElementById("site-header");
+  let lastAnchorY = window.scrollY || 0;
+  let isNavHidden = false;
+  const SCROLL_DEADBAND = 16; // Minimum pixels moved before toggling state
+
+  function handleScrollUpdate(scrollY) {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight > 0 && progressBar) {
+      const pct = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+      progressBar.style.width = pct + "%";
+    }
+
+    if (!siteHeader) return;
+
+    // Always keep visible when near the top
+    if (scrollY <= 120) {
+      if (isNavHidden) {
+        siteHeader.classList.remove("nav-hidden");
+        isNavHidden = false;
+      }
+      lastAnchorY = scrollY;
+      return;
+    }
+
+    const delta = scrollY - lastAnchorY;
+
+    // Ignore tiny scroll variations / deceleration oscillations when stopped
+    if (Math.abs(delta) < SCROLL_DEADBAND) {
+      return;
+    }
+
+    if (delta > 0 && scrollY > 160) {
+      // Affirmative scroll DOWN
+      if (!isNavHidden) {
+        siteHeader.classList.add("nav-hidden");
+        isNavHidden = true;
+      }
+      lastAnchorY = scrollY;
+    } else if (delta < 0) {
+      // Affirmative scroll UP
+      if (isNavHidden) {
+        siteHeader.classList.remove("nav-hidden");
+        isNavHidden = false;
+      }
+      lastAnchorY = scrollY;
+    }
+  }
+
+  // Hook into Lenis scroll event if active, fallback to native window scroll
+  if (lenis) {
+    lenis.on("scroll", (e) => {
+      handleScrollUpdate(e.scroll);
+    });
+  } else {
+    window.addEventListener("scroll", () => {
+      handleScrollUpdate(window.scrollY);
+    }, { passive: true });
+  }
+
+  // 6. GSAP SCENE PINNING & SCRUBBING
+  if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined" && !isReduced) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // SCENE 1: Typing Simulation on Scroll
+    const queryTarget = "Your Business Name Gokak";
+    const googleTextElem = document.getElementById("google-typing-text");
+
+    ScrollTrigger.create({
+      trigger: "#scene-1",
+      start: "top 75%",
+      end: "top 35%",
+      scrub: 0.5,
+      onUpdate: (self) => {
+        if (!googleTextElem) return;
+        const charCount = Math.floor(self.progress * queryTarget.length);
+        googleTextElem.textContent = queryTarget.substring(0, charCount);
+      }
+    });
+
+    // SCENE 2: The Middleman Cut Counter (Finishes in 1s right in front of user's eyes)
+    const commMeterNum = document.getElementById("commission-meter-num");
+    const commMeterSlice = document.getElementById("bill-cut-slice");
+    let commCounter = { val: 0 };
+    let commTween = null;
+
+    ScrollTrigger.create({
+      trigger: "#scene-2",
+      start: "top 65%",
+      onEnter: () => {
+        if (commTween) commTween.kill();
+        commCounter.val = 0;
+        commTween = gsap.to(commCounter, {
+          val: 280,
+          duration: 1.0,
+          ease: "power2.out",
+          onUpdate: () => {
+            if (commMeterNum) {
+              commMeterNum.textContent = "₹" + Math.floor(commCounter.val);
+            }
+          }
+        });
+        if (commMeterSlice) {
+          gsap.to(commMeterSlice, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: "power2.out"
+          });
+        }
+      },
+      onLeaveBack: () => {
+        if (commTween) commTween.kill();
+        commCounter.val = 0;
+        if (commMeterNum) commMeterNum.textContent = "₹0";
+      }
+    });
+
+    // SCENE 3: The Switch (Red to Green transition)
+    const switchPhoneScreen = document.getElementById("switch-phone-screen");
+    const switchCaption = document.getElementById("switch-caption-badge");
+
+    ScrollTrigger.create({
+      trigger: "#scene-3",
+      start: "top center",
+      end: "bottom center",
+      scrub: 0.5,
+      onEnter: () => {
+        if (switchPhoneScreen) {
+          switchPhoneScreen.style.backgroundColor = "#FAF7F2";
+          switchPhoneScreen.classList.add("direct-active");
+        }
+        if (switchCaption) {
+          switchCaption.className = "scene-badge-pill good";
+          switchCaption.textContent = "100% DIRECT TO YOUR UPI";
+        }
+      },
+      onLeaveBack: () => {
+        if (switchPhoneScreen) {
+          switchPhoneScreen.style.backgroundColor = "#FFFFFF";
+          switchPhoneScreen.classList.remove("direct-active");
+        }
+        if (switchCaption) {
+          switchCaption.className = "scene-badge-pill bad";
+          switchCaption.textContent = "THE AGGREGATOR CUT";
+        }
+      }
+    });
+
+    // SCENE 4: WhatsApp Messages Stacking in
+    const waBubbles = gsap.utils.toArray(".scene-4-bubble");
+    waBubbles.forEach((bubble, idx) => {
+      gsap.from(bubble, {
+        scrollTrigger: {
+          trigger: bubble,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+        opacity: 0,
+        y: 20,
+        scale: 0.92,
+        duration: 0.5,
+        ease: "power2.out",
+        delay: idx * 0.1
+      });
+    });
+
+    // SCENE 5: Horizontal Scroll Work Gallery
+    const workTrack = document.getElementById("horizontal-work-track");
+    const workSection = document.getElementById("scene-work");
+
+    if (workTrack && workSection && window.innerWidth > 768) {
+      const scrollAmount = workTrack.scrollWidth - window.innerWidth + 80;
+
+      gsap.to(workTrack, {
+        x: -scrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: workSection,
+          pin: true,
+          scrub: 1,
+          start: "top top",
+          end: () => `+=${scrollAmount}`,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+
+    // 7. 3D Card Tilt Physics (M16 Recipe)
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((y - centerY) / centerY) * -6;
+        const rotateY = ((x - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+      });
+    });
+
+    // 7b. Interactive Fan Deck (Tri-Cards Splay with Opposing Magnetic Hover)
+    const fanDeckStage = document.getElementById("fan-deck-stage");
+    const fanLeft = document.getElementById("fan-card-left");
+    const fanCenter = document.getElementById("fan-card-center");
+    const fanRight = document.getElementById("fan-card-right");
+
+    if (fanDeckStage && fanLeft && fanCenter && fanRight) {
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isHovering = false;
+      let fanRafId = null;
+
+      function renderFanDeck() {
+        // Fluid spring lerp
+        currentX += (targetX - currentX) * 0.15;
+        currentY += (targetY - currentY) * 0.15;
+
+        // "where mouse and fingel hover that side cards littel move the opposite direction littel"
+        const oppX = -currentX;
+        const oppY = -currentY;
+
+        const isNarrow = window.innerWidth <= 600;
+        const baseSpread = isNarrow ? 22 : 28;
+        const baseRot = isNarrow ? 15 : 18;
+        const maxShift = isNarrow ? 10 : 18;
+        const maxTilt = isNarrow ? 8 : 12;
+
+        // Left card reacts:
+        const leftRot = -baseRot + oppX * maxTilt;
+        const leftX = -baseSpread + oppX * maxShift;
+        const leftY = (isNarrow ? 10 : 12) + oppY * 6;
+        fanLeft.style.transform = `rotate(${leftRot}deg) translate(${leftX}px, ${leftY}px)`;
+
+        // Center card tilts gently:
+        const centerRot = oppX * (isNarrow ? 4 : 6);
+        const centerX = oppX * (isNarrow ? 6 : 8);
+        const centerY = (isNarrow ? -4 : -6) + oppY * 5;
+        fanCenter.style.transform = `rotate(${centerRot}deg) translate(${centerX}px, ${centerY}px)`;
+
+        // Right card reacts:
+        const rightRot = baseRot + oppX * maxTilt;
+        const rightX = baseSpread + oppX * maxShift;
+        const rightY = (isNarrow ? 10 : 12) + oppY * 6;
+        fanRight.style.transform = `rotate(${rightRot}deg) translate(${rightX}px, ${rightY}px)`;
+
+        if (isHovering || Math.abs(targetX - currentX) > 0.005) {
+          fanRafId = requestAnimationFrame(renderFanDeck);
+        }
+      }
+
+      function onPointerMove(e) {
+        const rect = fanDeckStage.getBoundingClientRect();
+        const clientX = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches && e.touches.length ? e.touches[0].clientY : e.clientY;
+
+        const normX = (clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        const normY = (clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+        targetX = Math.max(-1, Math.min(1, normX));
+        targetY = Math.max(-1, Math.min(1, normY));
+
+        if (!isHovering) {
+          isHovering = true;
+          cancelAnimationFrame(fanRafId);
+          fanRafId = requestAnimationFrame(renderFanDeck);
+        }
+      }
+
+      function onPointerLeave() {
+        isHovering = false;
+        targetX = 0;
+        targetY = 0;
+        cancelAnimationFrame(fanRafId);
+        fanRafId = requestAnimationFrame(renderFanDeck);
+      }
+
+      fanDeckStage.addEventListener("mousemove", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("mouseleave", onPointerLeave, { passive: true });
+      fanDeckStage.addEventListener("touchstart", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("touchmove", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("touchend", onPointerLeave, { passive: true });
+    }
+  }
+
+  // 7c. Pure Organic Soft Balloon & Bouncy Elastic Physics (No color change / No distorted geometry)
+  function initBalloonButtons() {
+    const hugeButton = document.querySelector(".btn-huge-wa");
+    if (!hugeButton) return;
+
+    let isHovered = false;
+
+    hugeButton.addEventListener("mousemove", (e) => {
+      isHovered = true;
+      const rect = hugeButton.getBoundingClientRect();
+      const localX = e.clientX - rect.left;
+      const localY = e.clientY - rect.top;
+
+      // Normalized coordinates (-1 to +1 from button center)
+      const nx = (localX / rect.width) * 2 - 1;
+      const ny = (localY / rect.height) * 2 - 1;
+
+      // Balloon soft displacement & squish: pushes slightly where hand touches
+      const pullX = nx * 14;
+      const pullY = ny * 8;
+      // When pressed on horizontal edges, squishes vertically and bulges horizontally
+      const scaleX = 1.03 + Math.abs(nx) * 0.02;
+      const scaleY = 1.03 - Math.abs(ny) * 0.02;
+      const rot = nx * 2.5;
+
+      if (window.gsap) {
+        gsap.to(hugeButton, {
+          x: pullX,
+          y: pullY,
+          rotation: rot,
+          scaleX: scaleX,
+          scaleY: scaleY,
+          duration: 0.28,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+
+        // Floating soft text parallax inside
+        const span = hugeButton.querySelector("span");
+        if (span) {
+          gsap.to(span, {
+            x: nx * 6,
+            y: ny * 3,
+            duration: 0.22,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        }
+      }
+    });
+
+    hugeButton.addEventListener("mouseleave", () => {
+      isHovered = false;
+      // High-frequency balloon jelly snap-back with natural rubber vibration
+      if (window.gsap) {
+        gsap.to(hugeButton, {
+          x: 0,
+          y: 0,
+          rotation: 0,
+          scaleX: 1,
+          scaleY: 1,
+          duration: 1.4,
+          ease: "elastic.out(1.7, 0.25)", // Authentic soft rubber damping wobble
+          overwrite: "auto"
+        });
+
+        const span = hugeButton.querySelector("span");
+        if (span) {
+          gsap.to(span, {
+            x: 0,
+            y: 0,
+            duration: 1.0,
+            ease: "elastic.out(1.5, 0.28)",
+            overwrite: "auto"
+          });
+        }
+      }
+    });
+
+    // Soft finger press squash (like squeezing a real balloon)
+    hugeButton.addEventListener("mousedown", () => {
+      if (window.gsap) {
+        gsap.to(hugeButton, {
+          scaleX: 1.08,
+          scaleY: 0.90,
+          y: "+=3",
+          duration: 0.12,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      }
+    });
+
+    // Soft bouncy balloon rebound
+    hugeButton.addEventListener("mouseup", () => {
+      if (window.gsap) {
+        gsap.to(hugeButton, {
+          scaleX: isHovered ? 1.04 : 1,
+          scaleY: isHovered ? 1.04 : 1,
+          duration: 0.9,
+          ease: "elastic.out(2.2, 0.22)",
+          overwrite: "auto"
+        });
+      }
+    });
+
+    // Also apply organic bounce to smaller pills (.btn-wa-pill)
+    const pills = document.querySelectorAll(".btn-wa-pill");
+    pills.forEach((pill) => {
+      pill.addEventListener("mouseenter", () => {
+        if (window.gsap) {
+          gsap.to(pill, {
+            scale: 1.05,
+            duration: 0.35,
+            ease: "back.out(2.5)",
+            overwrite: "auto"
+          });
+        }
+      });
+      pill.addEventListener("mouseleave", () => {
+        if (window.gsap) {
+          gsap.to(pill, {
+            scale: 1,
+            duration: 0.7,
+            ease: "elastic.out(1.6, 0.3)",
+            overwrite: "auto"
+          });
+        }
+      });
+      pill.addEventListener("mousedown", () => {
+        if (window.gsap) {
+          gsap.to(pill, {
+            scale: 0.94,
+            duration: 0.1,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
+        }
+      });
+      pill.addEventListener("mouseup", () => {
+        if (window.gsap) {
+          gsap.to(pill, {
+            scale: 1.05,
+            duration: 0.6,
+            ease: "elastic.out(2, 0.25)",
+            overwrite: "auto"
+          });
+        }
+      });
+    });
+  }
+
+  initBalloonButtons();
+
+  // 8. Package WhatsApp CTA Helper
+  window.selectPackageWhatsApp = function(packageName, price) {
+    const text = encodeURIComponent(
+      `Hello Web Developers! I am interested in the ${packageName} (${price}) for my business in Gokak / North Karnataka. Please tell me the next step.`
+    );
+    window.open(`https://wa.me/919108978522?text=${text}`, "_blank");
+  };
+
+  // 9. General WhatsApp CTA Helper
+  window.openGeneralWhatsApp = function(topic) {
+    const text = encodeURIComponent(
+      `Hello Web Developers! I saw your website and would like to chat about: ${topic || "building a website for my shop in Gokak"}.`
+    );
+    window.open(`https://wa.me/919108978522?text=${text}`, "_blank");
+  };
+
+  // 10. Legal Terms & Compliance Dialog Modal Controller
+  const legalModal = document.getElementById("legal-modal");
+
+  window.openLegalModal = function(tabName) {
+    if (!legalModal) return;
+    document.body.classList.add("modal-open");
+    if (typeof legalModal.showModal === "function") {
+      legalModal.showModal();
+    } else {
+      legalModal.setAttribute("open", "true");
+    }
+    if (tabName) window.switchLegalTab(tabName);
+  };
+
+  window.closeLegalModal = function() {
+    if (!legalModal) return;
+    document.body.classList.remove("modal-open");
+    if (typeof legalModal.close === "function") {
+      legalModal.close();
+    } else {
+      legalModal.removeAttribute("open");
+    }
+  };
+
+  window.switchLegalTab = function(tabId) {
+    document.querySelectorAll(".legal-tab-btn").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    const targetBtn = document.getElementById("tab-btn-" + tabId);
+    if (targetBtn) targetBtn.classList.add("active");
+
+    document.querySelectorAll(".legal-pane").forEach((pane) => {
+      pane.classList.remove("active");
+    });
+    const targetPane = document.getElementById("pane-" + tabId);
+    if (targetPane) targetPane.classList.add("active");
+  };
+
+  if (legalModal) {
+    legalModal.addEventListener("close", () => {
+      document.body.classList.remove("modal-open");
+    });
+    legalModal.addEventListener("cancel", () => {
+      document.body.classList.remove("modal-open");
+    });
+    legalModal.addEventListener("click", (e) => {
+      if (e.target === legalModal) {
+        window.closeLegalModal();
+        return;
+      }
+      const rect = legalModal.getBoundingClientRect();
+      const isInDialog = (
+        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+      );
+      if (!isInDialog) {
+        window.closeLegalModal();
+      }
+    });
+  }
+});

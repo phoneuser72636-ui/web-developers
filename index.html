@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Developers – Websites with WhatsApp ordering | Gokak, Belagavi, North Karnataka</title>
+  <meta name="description" content="We build fast websites with WhatsApp ordering for restaurants, sweet shops, jewellers & showrooms in Gokak, Belagavi & North Karnataka. Delivered in 5 to 7 days." />
+  
+  <link rel="icon" type="image/png" href="images/logo.png" />
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Core Typography: Instrument Serif + Bricolage Grotesque + JetBrains Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- GSAP & Lenis Smooth Scroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+
+  <!-- LocalBusiness SEO Structured Data for Gokak -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Web Developers — Building Ideas Online",
+    "description": "High-performance websites and direct WhatsApp commerce systems for local businesses in Gokak and North Karnataka.",
+    "url": "https://pixel-affiliates-stations-bullet.trycloudflare.com",
+    "telephone": "+919108978522",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Varadai Complex, Vivekanand Nagar",
+      "addressLocality": "Gokak",
+      "addressRegion": "Karnataka",
+      "postalCode": "591307",
+      "addressCountry": "IN"
+    },
+    "priceRange": "₹10,000 - ₹35,000",
+    "openingHours": "Mo-Su 09:00-22:00"
+  }
+  </script>
+</head>
+
+<body>
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress-bar" id="reading-progress"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- Film Grain Overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- Preloader (Under 1.4s) -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-brand">Web Developers • Gokak</div>
+    <div class="preloader-center">
+      <div class="preloader-number" id="preloader-count">0%</div>
+      <div class="preloader-tagline">Building ideas online</div>
+    </div>
+    <div class="preloader-footer">
+      <span>GOKAK, KARNATAKA</span>
+      <span>BUILT IN 5–7 DAYS</span>
+    </div>
+  </div>
+
+  <!-- Minimal Sticky Header -->
+  <header class="site-header" id="site-header">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo-brand">
+        <img src="images/logo.png" alt="Web Developers Logo" class="nav-logo-icon" />
+        <div class="nav-logo-text">
+          WEB DEVELOPERS
+          <span>GOKAK • EST. 2024</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="#scene-pricing" class="btn-ghost-dark" style="padding: 8px 16px; font-size: 13px;">
+          Packages
+        </a>
+        <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20I%20want%20to%20build%20a%20website%20for%20my%20business%20in%20Gokak." target="_blank" class="btn-wa-pill">
+          <span>Chat on WhatsApp ↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SCENE 0: HERO
+       ========================================================================= -->
+  <section class="hero-scene" id="scene-0">
+    <div class="content-wrapper">
+      <div class="hero-top-badge">
+        <span class="dot"></span>
+        <span>Gokak • Belagavi • North Karnataka</span>
+      </div>
+
+      <div class="hero-title-box">
+        <div class="hero-line-mask">
+          <h1 class="hero-headline">
+            <span>Your shop is open.</span>
+          </h1>
+        </div>
+        <div class="hero-line-mask">
+          <h1 class="hero-headline">
+            <span>Your website <em>isn't.</em></span>
+          </h1>
+        </div>
+      </div>
+
+      <p class="hero-subheadline">
+        We build fast websites that send orders straight to your WhatsApp. No commission. Delivered in 5 to 7 days.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20I%20have%20a%20shop%20in%20Gokak%20and%20want%20to%20get%20a%20website." target="_blank" class="btn-wa-pill" style="font-size: 15px; padding: 13px 28px;">
+          <span>Chat on WhatsApp</span>
+        </a>
+        <a href="#scene-pricing" class="btn-ghost-dark" style="font-size: 14px; padding: 12px 24px;">
+          <span>See packages ↓</span>
+        </a>
+      </div>
+
+      <div class="hero-scroll-cue">
+        <span class="scroll-arrow-anim">↓</span>
+        <span>Scroll to see the story</span>
+      </div>
+    </div>
+
+    <!-- Peeking Phone Mockup at bottom -->
+    <div class="phone-mockup-wrapper" id="peeking-phone">
+      <div class="phone-device">
+        <div class="phone-island"></div>
+        <div class="phone-screen">
+          <div class="screen-google">
+            <div style="font-size: 10px; font-family: var(--font-mono); color: #64748B; text-align: center; margin-top: 4px;">
+              SEARCH ENGINE • LOOKING FOR YOUR BUSINESS
+            </div>
+            <div class="google-search-bar">
+              <span style="color: #64748B;">🔍</span>
+              <span class="google-query-text">Your Business Name Gokak</span>
+            </div>
+            <div class="directory-listing-card">
+              <span class="ad-tag">DIRECTORY (NO OFFICIAL WEBSITE)</span>
+              <div class="dir-biz-title">Your Business Name — Overview &amp; Reviews</div>
+              <div style="font-size: 10px; color: #64748B;">Sponsored Alternatives (Taking Your Clients):</div>
+              <div class="competitor-list-row">
+                <div>⚠️ Competitor Workshop / Store A (Sponsored Ad)</div>
+                <div>⚠️ Competitor Showroom / Clinic B (Promoted)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 1: 9 PM, SOMEONE IS HUNGRY
+       ========================================================================= -->
+  <section class="pinned-story-stage" id="scene-1">
+    <div class="content-wrapper story-container-grid">
+      <!-- Phone Mockup Screen: Google Typing & Directory Listing -->
+      <div style="display: flex; justify-content: center;">
+        <div class="phone-device">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div class="screen-google">
+              <div style="font-size: 10px; font-family: var(--font-mono); color: #64748B; text-align: center; margin-top: 4px;">
+                SEARCH ENGINE • NO OFFICIAL SITE FOUND
+              </div>
+              <div class="google-search-bar">
+                <span style="color: #3B82F6;">🔍</span>
+                <span class="google-query-text" id="google-typing-text">Your Business Name</span>
+                <span class="typing-cursor"></span>
+              </div>
+              <div class="directory-listing-card" style="margin-top: 10px;">
+                <span class="ad-tag">UNCLAIMED DIRECTORY LISTING</span>
+                <div class="dir-biz-title">Your Business Name Gokak</div>
+                <div style="font-size: 11px; color: #475569; margin: 4px 0;">3.8 ★ (12 Reviews) • Missing Official Catalog &amp; Booking</div>
+                <div class="competitor-list-row">
+                  <span style="font-weight: 700; color: #B91C1C;">Competitors Paying For Ads Above You:</span>
+                  <div>• Competitor Workshop / Store A (Sponsored Ad)</div>
+                  <div>• Competitor Showroom / Clinic B (Sponsored Ad)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrative Caption -->
+      <div class="story-caption-side">
+        <span class="scene-badge-pill bad">SCENE 1 • THE LOST CUSTOMER</span>
+        <h2 class="story-title">They searched for your name.</h2>
+        <h3 class="story-subtitle">Directories showed them your competitors.</h3>
+        <p class="story-desc">
+          Whether you run a car service garage, machinery shop, clinic, clothing store, engineering firm, or restaurant: when you don't own your website, search engines push your customers to directory portals that sell their phone numbers to your competitors.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 2: THE COMMISSION METER
+       ========================================================================= -->
+  <section class="pinned-story-stage" id="scene-2" style="background: #FCF8F5;">
+    <div class="content-wrapper story-container-grid">
+      <!-- Phone Mockup Screen: Red Aggregator Bill & Running Meter -->
+      <div style="display: flex; justify-content: center;">
+        <div class="phone-device" style="border-color: #291D1A;">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div style="padding: 30px 14px 14px; background: #FFF5F5; height: 100%; display: flex; flex-direction: column;">
+              <div style="font-size: 10px; font-family: var(--font-mono); color: var(--commission-red); font-weight: 700; text-align: center;">
+                MIDDLEMAN / DIRECTORY COMMISSION SLIP
+              </div>
+
+              <div class="commission-meter-box">
+                <div class="commission-meter-num" id="commission-meter-num">₹280</div>
+                <div class="commission-meter-label">Cut Kept by Middleman Platform</div>
+              </div>
+
+              <div class="bill-breakdown-box" id="bill-cut-slice">
+                <div class="bill-row">
+                  <span>1x Service Order / Booking</span>
+                  <span>₹600</span>
+                </div>
+                <div class="bill-row">
+                  <span>1x Materials / Spares / Products</span>
+                  <span>₹400</span>
+                </div>
+                <div class="bill-row" style="border-top: 1px solid #E2E8F0; padding-top: 6px; font-weight: 700;">
+                  <span>Customer Paid</span>
+                  <span>₹1,000</span>
+                </div>
+                <div class="bill-row bill-cut-highlight">
+                  <span>Platform Lead Fee / Commission (28%)</span>
+                  <span>- ₹280</span>
+                </div>
+                <div class="bill-row" style="font-weight: 800; color: #1E293B; margin-top: 4px;">
+                  <span>You Actually Receive</span>
+                  <span>₹720</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrative Caption -->
+      <div class="story-caption-side">
+        <span class="scene-badge-pill bad">SCENE 2 • THE MIDDLEMAN TAX</span>
+        <h2 class="story-title" style="color: var(--commission-red);">You did the work.</h2>
+        <h3 class="story-subtitle">The middleman took the cut.</h3>
+        <p class="story-desc">
+          On every ₹1,000 order or service inquiry, lead brokers, aggregators, and directory portals keep 25% to 30% of your money. You pay for the rent, machinery, inventory, and staff—and they walk away with your margin.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 3: THE SWITCH
+       ========================================================================= -->
+  <section class="pinned-story-stage" id="scene-3" style="background: #F4FAF6;">
+    <div class="content-wrapper story-container-grid">
+      <!-- Phone Mockup Screen: Direct Website & 100% Retention -->
+      <div style="display: flex; justify-content: center;">
+        <div class="phone-device" style="border-color: #162B1F;">
+          <div class="phone-island"></div>
+          <div class="phone-screen" id="switch-phone-screen">
+            <div class="screen-direct-site">
+              <div class="direct-site-header">
+                <span class="direct-site-logo">YOUR OFFICIAL WEBSITE</span>
+                <span style="font-size: 10px; font-family: var(--font-mono); color: var(--signal-green); font-weight: 700;">● VERIFIED</span>
+              </div>
+
+              <div style="font-size: 10.5px; color: #57534E; margin-bottom: 8px;">
+                yourbusiness.com • Official Showcase
+              </div>
+
+              <!-- Feature Card 1: Products & Services -->
+              <div class="direct-site-card">
+                <span class="direct-card-tag">PRODUCTS &amp; SERVICES</span>
+                <div class="direct-card-title">Live Catalog &amp; Transparent Quotes</div>
+                <div class="direct-card-desc">Car service, machinery spares, clinics, apparel or dining</div>
+              </div>
+
+              <!-- Feature Card 2: 100% Retained Revenue -->
+              <div class="direct-zero-banner">
+                <span class="direct-zero-left">₹1,000 Order = ₹1,000 Kept</span>
+                <span class="direct-zero-pill">0% CUT</span>
+              </div>
+
+              <!-- Feature Card 3: Direct Inquiry -->
+              <div class="direct-site-card">
+                <span class="direct-card-tag">DIRECT CONNECTION</span>
+                <div class="direct-card-title">One-Tap Direct WhatsApp Chat</div>
+                <div class="direct-card-desc">Customer connects directly with you. Zero middlemen.</div>
+              </div>
+
+              <div class="direct-order-btn">
+                <span>Inquire on WhatsApp (100% Direct) →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrative Caption -->
+      <div class="story-caption-side">
+        <span class="scene-badge-pill good" id="switch-caption-badge">SCENE 3 • THE DIRECT SWITCH</span>
+        <h2 class="story-title" style="color: #0F5132;">Your website. Your customers.</h2>
+        <h3 class="story-subtitle">100% of the money in your pocket.</h3>
+        <p class="story-desc">
+          Now imagine that same customer landing directly on your official website. Whether they want a car service quote, bulk machinery inquiry, doctor appointment, apparel order, or dining reservation—they tap WhatsApp and deal with YOU directly. <strong>₹0 commission.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 4: ORDERS ROLL IN
+       ========================================================================= -->
+  <section class="pinned-story-stage" id="scene-4">
+    <div class="content-wrapper story-container-grid">
+      <!-- Phone Mockup Screen: WhatsApp Chat Bubbles Stacking -->
+      <div style="display: flex; justify-content: center;">
+        <div class="phone-device" style="border-color: #0B2519;">
+          <div class="phone-island"></div>
+          <div class="phone-screen">
+            <div class="screen-whatsapp">
+              <div class="wa-chat-header">
+                <span>WhatsApp Business</span>
+                <span style="font-size: 10px; font-weight: 500;">Online</span>
+              </div>
+
+              <div class="wa-bubble-stack">
+                <div class="wa-bubble scene-4-bubble">
+                  <div class="wa-sender">Auto Care &amp; Garage (Car Servicing)</div>
+                  <div>Namaskara sir! Need full synthetic oil change &amp; brake check for Hyundai Creta tomorrow 10 AM. Can I drop car?</div>
+                  <div class="wa-time">8:42 PM ✓✓</div>
+                </div>
+
+                <div class="wa-bubble scene-4-bubble">
+                  <div class="wa-sender">Industrial Hardware (Machinery &amp; Spares)</div>
+                  <div>Hello, need quotation for 5HP Submersible Pump set + 50m cable. Is delivery to industrial area available?</div>
+                  <div class="wa-time">8:47 PM ✓✓</div>
+                </div>
+
+                <div class="wa-bubble scene-4-bubble">
+                  <div class="wa-sender">Healthcare Clinic (Doctor Appointment)</div>
+                  <div>Hello doctor, want to book evening consultation (6:30 PM) for dental checkup &amp; X-ray.</div>
+                  <div class="wa-time">8:53 PM ✓✓</div>
+                </div>
+
+                <div class="wa-bubble scene-4-bubble">
+                  <div class="wa-sender">Modern Textiles (Cloth &amp; Apparel)</div>
+                  <div>Hello! Need 6 formal linen shirts (Size 42) as shown on website. Can you send payment QR code?</div>
+                  <div class="wa-time">8:58 PM ✓✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Narrative Caption -->
+      <div class="story-caption-side">
+        <span class="scene-badge-pill good">SCENE 4 • ORDERS ROLL IN</span>
+        <h2 class="story-title">Orders land on WhatsApp.</h2>
+        <h3 class="story-subtitle">Manage everything with one app you already use.</h3>
+        <p class="story-desc">
+          Zero training for your staff. No tablet POS hardware to buy. Whether car servicing bookings, machinery spare inquiries, clinic appointments, apparel orders, or dining reservations—everything arrives as a clean, itemized WhatsApp message on your phone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 5: THE WORK (PINNED HORIZONTAL SCROLL GALLERY)
+       ========================================================================= -->
+  <section class="horizontal-work-section" id="scene-work">
+    <div class="content-wrapper" style="margin-bottom: 16px;">
+      <span class="hero-top-badge" style="margin-bottom: 6px; padding: 4px 10px; font-size: 11px;">
+        <span class="dot"></span>
+        <span>PROVEN ARCHITECTURES • REAL LOCAL BUSINESSES</span>
+      </span>
+      <h2 style="font-family: var(--font-display); font-size: clamp(26px, 3.2vw, 42px); line-height: 1.05;">
+        Universal Systems Built for Any Local Business.
+      </h2>
+      <p style="font-size: 13.5px; color: var(--ink-soft); max-width: 650px; margin-top: 4px;">
+        Engineered for car workshops, industrial machinery, healthcare clinics, retail showrooms, and hospitality businesses.
+      </p>
+    </div>
+
+    <!-- Pinned Horizontal Scroll Track -->
+    <div class="work-track-wrapper" id="horizontal-work-track">
+      <!-- Project 1: Pure Veg Dining & Banquet System -->
+      <div class="work-card-device tilt-card">
+        <div class="work-preview-stage">
+          <img src="images/terrace_thumb.jpg" alt="Dining & Banquet System" class="work-preview-img" />
+          <span class="work-badge-corner">Hospitality &amp; Banquet</span>
+        </div>
+        <div class="work-info-block">
+          <div class="work-client-type">Dining &amp; Banquet • North Karnataka</div>
+          <h3 class="work-client-name">Pure Veg Dining &amp; Banquet System</h3>
+          <p class="work-client-result">
+            Direct WhatsApp food menu + 65-seat AC banquet reservation system. Completely replaced 30% aggregator commission dependencies.
+          </p>
+          <div class="work-tag-row">
+            <span class="work-pill-tag">Digital Menu</span>
+            <span class="work-pill-tag">WhatsApp Cart</span>
+            <span class="work-pill-tag">Hall Booking</span>
+          </div>
+          <div style="margin-top: 14px;">
+            <a href="https://ozone-thereafter-recall-antarctica.trycloudflare.com" target="_blank" class="btn-ghost-dark" style="padding: 7px 16px; font-size: 12.5px;">
+              Explore Live Architecture ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: Heritage Sweets & Bulk Gifting Store -->
+      <div class="work-card-device tilt-card">
+        <div class="work-preview-stage">
+          <img src="images/kalburgi_thumb.jpg" alt="Heritage Sweets & Gifting Store" class="work-preview-img" />
+          <span class="work-badge-corner">Confectionery &amp; Gifting</span>
+        </div>
+        <div class="work-info-block">
+          <div class="work-client-type">Confectionery &amp; Bulk Orders • Karnataka</div>
+          <h3 class="work-client-name">Heritage Sweets &amp; Bulk Gifting Store</h3>
+          <p class="work-client-result">
+            Pan-India festival gifting catalog for regional sweets and corporate boxes. Expanded bulk orders far beyond local walk-in footfall.
+          </p>
+          <div class="work-tag-row">
+            <span class="work-pill-tag">Corporate Gifting</span>
+            <span class="work-pill-tag">Bulk WhatsApp Order</span>
+            <span class="work-pill-tag">UPI QR</span>
+          </div>
+          <div style="margin-top: 14px;">
+            <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20Please%20share%20a%20live%20demo%20preview%20for%20a%20bulk%20gifting%20catalog%20site." target="_blank" class="btn-ghost-dark" style="padding: 7px 16px; font-size: 12.5px;">
+              Request Demo Preview ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3: Bridal Gold & Diamond Lookbook -->
+      <div class="work-card-device tilt-card">
+        <div class="work-preview-stage">
+          <img src="images/punarvi_thumb.jpg" alt="Bridal Gold & Diamond Lookbook" class="work-preview-img" />
+          <span class="work-badge-corner">Luxury Jewellery</span>
+        </div>
+        <div class="work-info-block">
+          <div class="work-client-type">Fine Gold &amp; Diamond • Showroom</div>
+          <h3 class="work-client-name">Bridal Gold &amp; Diamond Lookbook</h3>
+          <p class="work-client-result">
+            Interactive bridal jewelry lookbook letting wedding families shortlist gold and diamond sets before visiting the physical showroom.
+          </p>
+          <div class="work-tag-row">
+            <span class="work-pill-tag">Bridal Lookbook</span>
+            <span class="work-pill-tag">High-Ticket Shortlists</span>
+            <span class="work-pill-tag">VIP Booking</span>
+          </div>
+          <div style="margin-top: 14px;">
+            <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20Please%20share%20a%20live%20demo%20preview%20for%20a%20jewellery%20lookbook%20site." target="_blank" class="btn-ghost-dark" style="padding: 7px 16px; font-size: 12.5px;">
+              Request Demo Preview ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4: Modern Apparel & Multi-Store Showcase -->
+      <div class="work-card-device tilt-card">
+        <div class="work-preview-stage">
+          <img src="images/styleheaven_thumb.jpg" alt="Modern Apparel Showcase" class="work-preview-img" />
+          <span class="work-badge-corner">Fashion &amp; Retail</span>
+        </div>
+        <div class="work-info-block">
+          <div class="work-client-type">Streetwear &amp; Formal • Multi-Outlet</div>
+          <h3 class="work-client-name">Modern Apparel &amp; Multi-Store Showcase</h3>
+          <p class="work-client-result">
+            Modern streetwear catalog with multi-store city locator and instant WhatsApp size/inventory checks.
+          </p>
+          <div class="work-tag-row">
+            <span class="work-pill-tag">Multi-Store Locator</span>
+            <span class="work-pill-tag">Instant Stock Check</span>
+            <span class="work-pill-tag">60 FPS Motion</span>
+          </div>
+          <div style="margin-top: 14px;">
+            <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20Please%20share%20a%20live%20demo%20preview%20for%20an%20apparel%20retail%20site." target="_blank" class="btn-ghost-dark" style="padding: 7px 16px; font-size: 12.5px;">
+              Request Demo Preview ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5: Fan Deck Card (And 25+ More Local Businesses) -->
+      <div class="work-card-device fan-deck-card tilt-card" id="fan-deck-card">
+        <div class="work-preview-stage fan-deck-stage" id="fan-deck-stage">
+          <div class="fan-deck-container" id="fan-deck-container">
+            <!-- Left Card: Auto & Workshop -->
+            <div class="fan-card fan-card-left" id="fan-card-left">
+              <div class="fan-card-top-label">
+                <span class="fan-card-dot"></span>
+                <span>AUTO &amp; GARAGE</span>
+              </div>
+              <div class="fan-card-orb orb-amber">
+                <span class="fan-card-emoji">🚗</span>
+              </div>
+              <div class="fan-card-tagline">Workshops</div>
+            </div>
+
+            <!-- Center Card: Machinery & Spares -->
+            <div class="fan-card fan-card-center" id="fan-card-center">
+              <div class="fan-card-top-label">
+                <span class="fan-card-dot active"></span>
+                <span>MACHINERY</span>
+              </div>
+              <div class="fan-card-orb orb-gold">
+                <span class="fan-card-emoji">⚙️</span>
+              </div>
+              <div class="fan-card-badge-plate">
+                <span>ANY LOCAL BUSINESS ✦</span>
+              </div>
+            </div>
+
+            <!-- Right Card: Clinics & Doctors -->
+            <div class="fan-card fan-card-right" id="fan-card-right">
+              <div class="fan-card-top-label">
+                <span class="fan-card-dot"></span>
+                <span>CLINICS</span>
+              </div>
+              <div class="fan-card-orb orb-emerald">
+                <span class="fan-card-emoji">🩺</span>
+              </div>
+              <div class="fan-card-tagline">Healthcare</div>
+            </div>
+          </div>
+
+          <span class="work-badge-corner" style="background: rgba(25, 195, 125, 0.95);">+ 25 More Industries</span>
+        </div>
+
+        <div class="work-info-block">
+          <div class="work-client-type">Any Local Business In Karnataka</div>
+          <h3 class="work-client-name">(And Many More Shops &amp; Showrooms)</h3>
+          <p class="work-client-result">
+            Hardware workshops, machinery distributors, dental clinics, retail shops, and apparel stores. We build custom direct WhatsApp websites for any trade in town.
+          </p>
+          <div class="work-tag-row">
+            <span class="work-pill-tag">Car Servicing</span>
+            <span class="work-pill-tag">Machinery</span>
+            <span class="work-pill-tag">Clinics</span>
+            <span class="work-pill-tag">Hardware</span>
+            <span class="work-pill-tag">Textiles</span>
+          </div>
+          <div style="margin-top: 14px;">
+            <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20I%20have%20a%20shop%20or%20business%20in%20Karnataka%20and%20want%20a%20custom%20website." target="_blank" class="btn-wa-pill" style="padding: 8px 18px; font-size: 13px;">
+              <span>Get Site For Your Business →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 6: THE PRICES (CLASSIC 3-TIER AGENCY PACKAGES)
+       ========================================================================= -->
+  <section class="pricing-editorial-section" id="scene-pricing">
+    <div class="content-wrapper">
+      <div style="text-align: center; max-width: 720px; margin: 0 auto;">
+        <span class="hero-top-badge">
+          <span class="dot"></span>
+          <span>TRANSPARENT PRICING • ZERO SURPRISES</span>
+        </span>
+        <h2 style="font-family: var(--font-display); font-size: clamp(38px, 6vw, 76px); line-height: 1.05;">
+          Clear packages. Zero surprises.
+        </h2>
+        <p style="font-size: 16px; color: var(--ink-soft); margin-top: 14px;">
+          1st-year .com/.in domain registration and high-speed cloud hosting are 100% included in every package. No monthly software retainers.
+        </p>
+      </div>
+
+      <!-- 4 Pillars Feature Bar (Classic Agency Standard) -->
+      <div class="pricing-features-bar">
+        <div class="pricing-feature-item">
+          <span class="pfi-icon">⚡</span>
+          <div class="pfi-text">
+            <strong>Fast Loading</strong>
+            <span>Instant mobile speed</span>
+          </div>
+        </div>
+        <div class="pricing-feature-item">
+          <span class="pfi-icon">📱</span>
+          <div class="pfi-text">
+            <strong>Mobile Responsive</strong>
+            <span>Pixel-perfect on all phones</span>
+          </div>
+        </div>
+        <div class="pricing-feature-item">
+          <span class="pfi-icon">🛡️</span>
+          <div class="pfi-text">
+            <strong>Secure &amp; Reliable</strong>
+            <span>Free SSL &amp; cloud uptime</span>
+          </div>
+        </div>
+        <div class="pricing-feature-item">
+          <span class="pfi-icon">🎧</span>
+          <div class="pfi-text">
+            <strong>Ongoing Support</strong>
+            <span>Friendly local maintenance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing-editorial-grid">
+        <!-- Tier 1: Basic -->
+        <div class="pricing-editorial-card">
+          <div>
+            <div class="price-tag-title">Basic</div>
+            <p class="price-tag-desc">Perfect for small local shops, service counters, and personal brands.</p>
+            <div class="price-starting-label">Starting from</div>
+            <div class="price-display-row">
+              <span class="price-main-num">₹10,000</span>
+              <span class="price-cadence-sub">INR / one-time</span>
+            </div>
+            <ul class="price-features-clean">
+              <li><span class="price-check-bullet">✓</span><span>Up to 5 Custom Pages</span></li>
+              <li><span class="price-check-bullet">✓</span><span>100% Mobile &amp; Tablet Responsive</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Fast Loading Speed &amp; Clean Code</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Direct WhatsApp Chat &amp; Inquiry Button</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Google Maps Location &amp; Click-to-Call</span></li>
+              <li><span class="price-check-bullet">✓</span><span><strong>1st Year .com / .in domain included</strong></span></li>
+              <li><span class="price-check-bullet">✓</span><span><strong>1st Year cloud hosting included</strong></span></li>
+              <li><span class="price-check-bullet">✓</span><span>15 Days Free Edits &amp; Friendly Support</span></li>
+            </ul>
+          </div>
+          <button class="btn-ghost-dark" style="width: 100%; justify-content: center;" onclick="selectPackageWhatsApp('Basic Package', '₹10,000')">
+            Choose Basic (₹10,000) →
+          </button>
+        </div>
+
+        <!-- Tier 2: Standard (Featured) -->
+        <div class="pricing-editorial-card featured">
+          <div class="featured-badge-ribbon">Most Popular</div>
+          <div>
+            <div class="price-tag-title">Standard</div>
+            <p class="price-tag-desc">Ideal for growing shops, showrooms, restaurants, and local businesses.</p>
+            <div class="price-starting-label">Starting from</div>
+            <div class="price-display-row">
+              <span class="price-main-num">₹20,000</span>
+              <span class="price-cadence-sub">INR / one-time</span>
+            </div>
+            <ul class="price-features-clean">
+              <li><span class="price-check-bullet">✓</span><span>Custom High-End Modern Design</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Custom Modern UI/UX Layout</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Mobile + Tablet Optimized</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Digital Product / Service Showcase</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Interactive WhatsApp Inquiry Form</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Google Maps &amp; Local Search SEO Setup</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Social Media &amp; Instagram Sync</span></li>
+              <li><span class="price-check-bullet">✓</span><span><strong>1st Year Domain &amp; Fast Hosting Included</strong></span></li>
+              <li><span class="price-check-bullet">✓</span><span>3 Months Friendly Support &amp; Edits</span></li>
+            </ul>
+          </div>
+          <button class="btn-wa-pill" style="width: 100%; justify-content: center; font-size: 15px;" onclick="selectPackageWhatsApp('Standard Package', '₹20,000')">
+            Choose Standard (₹20,000) →
+          </button>
+        </div>
+
+        <!-- Tier 3: Premium -->
+        <div class="pricing-editorial-card">
+          <div>
+            <div class="price-tag-title">Premium</div>
+            <p class="price-tag-desc">For established businesses and multi-branch showrooms.</p>
+            <div class="price-starting-label">Starting from</div>
+            <div class="price-display-row">
+              <span class="price-main-num">₹30,000</span>
+              <span class="price-cadence-sub">INR / one-time</span>
+            </div>
+            <ul class="price-features-clean">
+              <li><span class="price-check-bullet">✓</span><span>Premium Design &amp; Smooth Motion</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Complete Flagship Showcase &amp; Branding</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Deep Product / Service Catalog (Direct WhatsApp)</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Multi-Location Google Maps &amp; Direct Routing</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Advanced Local SEO &amp; Google Search Setup</span></li>
+              <li><span class="price-check-bullet">✓</span><span>Counter QR Standee Printable Design</span></li>
+              <li><span class="price-check-bullet">✓</span><span><strong>1st Year Premium Domain &amp; Hosting</strong></span></li>
+              <li><span class="price-check-bullet">✓</span><span>6 Months Ongoing Priority Support &amp; Edits</span></li>
+            </ul>
+          </div>
+          <button class="btn-ghost-dark" style="width: 100%; justify-content: center;" onclick="selectPackageWhatsApp('Premium Package', '₹30,000')">
+            Choose Premium (₹30,000) →
+          </button>
+        </div>
+
+        <!-- Tier 4: VIP + Local Blogger -->
+        <div class="pricing-editorial-card featured" style="border-color: #D97706; background: #FFFDF8;">
+          <div class="featured-badge-ribbon amber">Maximum Traction</div>
+          <div>
+            <div class="price-tag-title">VIP + Blogger</div>
+            <p class="price-tag-desc">Complete digital presence combined with a local blogger to visit and cover your business.</p>
+            <div class="price-starting-label">Starting from</div>
+            <div class="price-display-row">
+              <span class="price-main-num" style="color: #D97706;">₹35,000</span>
+              <span class="price-cadence-sub">INR / one-time</span>
+            </div>
+            <ul class="price-features-clean">
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span><strong>Everything in Premium (₹30,000), plus:</strong></span></li>
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span><strong>Local Blogger Visit to Cover Your Shop &amp; Business</strong></span></li>
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span>Custom Promotional Reel for Instagram &amp; Status</span></li>
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span>Google Business Profile Review Acceleration Strategy</span></li>
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span>Dedicated Day-1 Launch Push Across Town</span></li>
+              <li><span class="price-check-bullet" style="color: #D97706;">✓</span><span>1 Year Priority Technical Support &amp; Upkeep</span></li>
+            </ul>
+          </div>
+          <button class="btn-wa-pill" style="width: 100%; justify-content: center; font-size: 15px; background: #D97706; box-shadow: 0 10px 28px rgba(217, 119, 6, 0.35);" onclick="selectPackageWhatsApp('VIP + Local Blogger Package', '₹35,000')">
+            <span>Choose VIP + Blogger (₹35,000) →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 7: US VS. THE AGENCY (RACE / TIMELINE)
+       ========================================================================= -->
+  <section class="agency-race-section" id="scene-compare">
+    <div class="content-wrapper">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="hero-top-badge">
+          <span class="dot"></span>
+          <span>THE COMPARISON</span>
+        </span>
+        <h2 style="font-family: var(--font-display); font-size: clamp(34px, 5vw, 68px); line-height: 1.05;">
+          Us vs. Typical Agencies
+        </h2>
+        <p style="font-size: 15.5px; color: var(--ink-soft); margin-top: 12px;">
+          Why local business owners work with us rather than paying bloated city retainers.
+        </p>
+      </div>
+
+      <div class="race-comparison-grid">
+        <!-- Top Column Header -->
+        <div class="race-header-row" aria-hidden="true">
+          <div class="race-col-head col-metric">
+            <span>KEY FEATURE / DELIVERABLE</span>
+          </div>
+          <div class="race-col-head col-us">
+            <span class="race-head-badge">RECOMMENDED</span>
+            <div class="race-head-title">WEB DEVELOPERS (US)</div>
+            <div class="race-head-subtitle">Direct WhatsApp Commerce System</div>
+          </div>
+          <div class="race-col-head col-agency">
+            <span class="race-head-badge agency">TRADITIONAL</span>
+            <div class="race-head-title">OTHER TYPICAL AGENCIES</div>
+            <div class="race-head-subtitle">City Agencies &amp; Retainers</div>
+          </div>
+        </div>
+
+        <!-- Metric 1: Speed -->
+        <div class="race-row">
+          <div class="race-metric-label">Turnaround Speed</div>
+          <div class="race-us-box">
+            <span class="race-mobile-col-tag us">WEB DEVELOPERS (US)</span>
+            <div class="race-us-value">5 to 7 Days</div>
+            <div class="race-us-sub">Carefully built &amp; tested, live next week</div>
+          </div>
+          <div class="race-agency-box">
+            <span class="race-mobile-col-tag agency">OTHER TYPICAL AGENCIES</span>
+            <div class="race-agency-value">6 to 12 Weeks</div>
+            <div class="race-agency-sub">Endless meetings and delays</div>
+          </div>
+        </div>
+
+        <!-- Metric 2: Price -->
+        <div class="race-row">
+          <div class="race-metric-label">Total Cost</div>
+          <div class="race-us-box">
+            <span class="race-mobile-col-tag us">WEB DEVELOPERS (US)</span>
+            <div class="race-us-value">₹10,000 to ₹35,000 (One-Time)</div>
+            <div class="race-us-sub">Clear, transparent one-time pricing</div>
+          </div>
+          <div class="race-agency-box">
+            <span class="race-mobile-col-tag agency">OTHER TYPICAL AGENCIES</span>
+            <div class="race-agency-value">₹75,000 to ₹1,50,000+</div>
+            <div class="race-agency-sub">Plus ₹10,000/month recurring fees</div>
+          </div>
+        </div>
+
+        <!-- Metric 3: Hosting -->
+        <div class="race-row">
+          <div class="race-metric-label">Domain &amp; Hosting</div>
+          <div class="race-us-box">
+            <span class="race-mobile-col-tag us">WEB DEVELOPERS (US)</span>
+            <div class="race-us-value">Included Free (1st Year)</div>
+            <div class="race-us-sub">We handle DNS, SSL, and server setup</div>
+          </div>
+          <div class="race-agency-box">
+            <span class="race-mobile-col-tag agency">OTHER TYPICAL AGENCIES</span>
+            <div class="race-agency-value">Surprise Extra Bills</div>
+            <div class="race-agency-sub">Hidden invoices for SSL &amp; servers</div>
+          </div>
+        </div>
+
+        <!-- Metric 4: Management -->
+        <div class="race-row">
+          <div class="race-metric-label">Order Management</div>
+          <div class="race-us-box">
+            <span class="race-mobile-col-tag us">WEB DEVELOPERS (US)</span>
+            <div class="race-us-value">Your WhatsApp Phone</div>
+            <div class="race-us-sub">Zero learning curve, works on any phone</div>
+          </div>
+          <div class="race-agency-box">
+            <span class="race-mobile-col-tag agency">OTHER TYPICAL AGENCIES</span>
+            <div class="race-agency-value">Complex Software Portals</div>
+            <div class="race-agency-sub">Confusing dashboards staff forgets to check</div>
+          </div>
+        </div>
+
+        <!-- Metric 5: Ongoing Cuts -->
+        <div class="race-row">
+          <div class="race-metric-label">Platform Cuts</div>
+          <div class="race-us-box">
+            <span class="race-mobile-col-tag us">WEB DEVELOPERS (US)</span>
+            <div class="race-us-value">0% Commission Ever</div>
+            <div class="race-us-sub">Every rupee goes straight to your UPI</div>
+          </div>
+          <div class="race-agency-box">
+            <span class="race-mobile-col-tag agency">OTHER TYPICAL AGENCIES</span>
+            <div class="race-agency-value">25% to 30% App Dependence</div>
+            <div class="race-agency-sub">Delivery apps keep taking a cut</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       SCENE 8: THE CLOSE
+       ========================================================================= -->
+  <section class="close-scene" id="scene-close">
+    <div class="content-wrapper">
+      <h2 class="close-huge-headline">
+        Ready to be the most popular shop in town?
+      </h2>
+      <p class="close-subheadline">
+        Message us on WhatsApp. We'll check your Google ranking and share a custom preview plan for your business.
+      </p>
+
+      <div class="close-magnetic-btn-wrap">
+        <a href="https://wa.me/919108978522?text=Hello%20Web%20Developers!%20I%20am%20ready%20to%20build%20a%20website%20for%20my%20business%20in%20Gokak." target="_blank" class="btn-huge-wa" data-cursor="whatsapp">
+          <span>Message on WhatsApp (+91 91089 78522) →</span>
+        </a>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 13px; color: var(--ink-dim); margin-top: 24px;">
+        Direct line: +91 91089 78522 • Varadai Complex, Gokak
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal Footer -->
+  <footer class="site-footer">
+    <div class="content-wrapper">
+      <div class="footer-top-row">
+        <div class="footer-brand-side">
+          <div class="nav-logo-brand">
+            <img src="images/logo.png" alt="Logo" class="nav-logo-icon" />
+            <div class="nav-logo-text">
+              WEB DEVELOPERS
+              <span>GOKAK, KARNATAKA</span>
+            </div>
+          </div>
+          <p>
+            Building fast WhatsApp commerce websites for restaurants, sweet shops, jewellers &amp; showrooms across North Karnataka.
+          </p>
+        </div>
+
+        <div class="footer-links-side">
+          <div class="footer-col">
+            <h6>Systems Built</h6>
+            <ul>
+              <li>Dining &amp; Banquet System</li>
+              <li>Heritage Sweets &amp; Gifting Store</li>
+              <li>Bridal Gold &amp; Diamond Lookbook</li>
+              <li>Modern Apparel Showcase</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h6>Packages</h6>
+            <ul>
+              <li>Basic Package (₹10,000)</li>
+              <li>Standard Package (₹20,000)</li>
+              <li>Premium Package (₹30,000)</li>
+              <li>VIP + Local Blogger (₹35,000)</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h6>Direct Contact</h6>
+            <ul>
+              <li>+91 91089 78522</li>
+              <li>Gokak, Karnataka 591307</li>
+              <li>5–7 Day Delivery</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 Web Developers — Building Ideas Online. Gokak, Karnataka 591307.</div>
+        <div class="footer-legal-links">
+          <button type="button" class="legal-link-btn" onclick="openLegalModal('privacy')">Privacy Policy</button>
+          <span>•</span>
+          <button type="button" class="legal-link-btn" onclick="openLegalModal('terms')">Terms of Service</button>
+          <span>•</span>
+          <button type="button" class="legal-link-btn" onclick="openLegalModal('refund')">Refund &amp; Delivery</button>
+          <span>•</span>
+          <button type="button" class="legal-link-btn" onclick="openLegalModal('disclaimer')">Disclaimers</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- HTML5 Legal Terms & Privacy Policy Dialog Modal -->
+  <dialog id="legal-modal" aria-labelledby="legal-modal-title">
+    <div class="legal-modal-inner">
+      <div class="legal-modal-header">
+        <div class="legal-modal-title" id="legal-modal-title">Legal Terms &amp; Compliance</div>
+        <button type="button" class="legal-close-btn" onclick="closeLegalModal()" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="legal-tabs-row" role="tablist">
+        <button type="button" class="legal-tab-btn active" id="tab-btn-privacy" onclick="switchLegalTab('privacy')" role="tab">Privacy Policy</button>
+        <button type="button" class="legal-tab-btn" id="tab-btn-terms" onclick="switchLegalTab('terms')" role="tab">Terms of Service</button>
+        <button type="button" class="legal-tab-btn" id="tab-btn-refund" onclick="switchLegalTab('refund')" role="tab">Refund &amp; Delivery</button>
+        <button type="button" class="legal-tab-btn" id="tab-btn-disclaimer" onclick="switchLegalTab('disclaimer')" role="tab">Legal Disclaimers</button>
+      </div>
+
+      <div class="legal-body-scroll">
+        <!-- Pane 1: Privacy Policy -->
+        <div class="legal-pane active" id="pane-privacy">
+          <h4>1. Privacy Policy &amp; Data Protection (DPDP Act 2023 Compliant)</h4>
+          <p>
+            Web Developers ("we", "us", or "our"), operating from Varadai Complex, Gokak, Karnataka 591307, is dedicated to upholding the privacy rights of all clients and website visitors in accordance with the Information Technology Act, 2000 and the Digital Personal Data Protection (DPDP) Act, 2023.
+          </p>
+          <h4>2. Information We Collect</h4>
+          <p>
+            We collect only the essential business information you voluntarily provide to construct your website, including business name, product catalogs, service menus, pricing, contact phone numbers, and physical location for Google Maps synchronization.
+          </p>
+          <h4>3. Direct WhatsApp Routing (Zero Data Brokering)</h4>
+          <p>
+            Unlike aggregator apps and business directories, our websites do not intercept, scrape, store, or sell customer contact information or order history. Customer inquiries and orders route directly from the visitor's device to your personal or business WhatsApp number via end-to-end encrypted protocol.
+          </p>
+          <h4>4. Third-Party Hosting &amp; Security</h4>
+          <p>
+            Client websites are hosted on tier-1 global cloud infrastructure (Cloudflare, AWS, or Fastly) with standard SSL/TLS 256-bit encryption. We do not sell, rent, or lease your business data or client lists to any marketing brokers.
+          </p>
+          <h4>5. Data Grievance Officer</h4>
+          <p>
+            For any privacy inquiries or data update requests, contact our designated administrator at: <strong>admin@webdevelopers.gokak</strong> or call <strong>+91 91089 78522</strong>.
+          </p>
+        </div>
+
+        <!-- Pane 2: Terms of Service -->
+        <div class="legal-pane" id="pane-terms">
+          <h4>1. Engagement &amp; Scope of Service</h4>
+          <p>
+            Web Developers provides web design, mobile-first responsive architecture, WhatsApp commerce button integration, Google Maps local SEO synchronization, domain registration, and cloud server deployment for local businesses.
+          </p>
+          <h4>2. Delivery Timeline &amp; Working Process</h4>
+          <p>
+            Projects are delivered within an estimated 5 to 7 business days following receipt of complete client materials (product photos, item list, verified pricing, and business details). We keep you updated at every milestone.
+          </p>
+          <h4>3. 100% Client Ownership</h4>
+          <p>
+            All custom domain names (.com, .in, or .co.in) are registered in the client's legal or trade name. You retain 100% intellectual property ownership of your brand assets, photographs, catalog copy, and domain credentials. We hold no hostage retainers.
+          </p>
+          <h4>4. Hosting &amp; Domain Inclusions</h4>
+          <p>
+            Every package includes 1 full year of top-tier cloud hosting, SSL security certificates, and domain registration. Subsequent annual renewals are billed at transparent actual cost (approximately ₹2,500/year for hosting + domain upkeep) with zero hidden agency fees.
+          </p>
+        </div>
+
+        <!-- Pane 3: Refund & Delivery Policy -->
+        <div class="legal-pane" id="pane-refund">
+          <h4>1. Milestone-Based Approval &amp; Quality</h4>
+          <p>
+            We operate with complete honesty and transparency. Before final launch, we provide a working demo preview for your review and include up to 2 rounds of edits so you only launch when you are 100% satisfied with the design and wording.
+          </p>
+          <h4>2. Post-Launch Friendly Support</h4>
+          <p>
+            All packages include 1st year domain registration, cloud hosting, and SSL certificates. Depending on your chosen package (Basic: 1 month, Standard: 3 months, Premium: 6 months), we provide free text edits, phone number updates, and image changes.
+          </p>
+        </div>
+
+        <!-- Pane 4: Legal Disclaimers -->
+        <div class="legal-pane" id="pane-disclaimer">
+          <h4>1. Third-Party Trademarks</h4>
+          <p>
+            "WhatsApp" is a registered trademark of Meta Platforms, Inc. "Google", "Google Maps", and "Google Business Profile" are trademarks of Google LLC. Web Developers is an independent web development studio and is not affiliated with, sponsored by, or endorsed by Meta Platforms, Inc. or Google LLC.
+          </p>
+          <h4>2. Business Responsibility</h4>
+          <p>
+            The business owner is solely responsible for fulfilling customer orders, managing appointments, charging accurate prices, and maintaining applicable local commercial licenses, GST compliance, or food safety hygiene certifications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Scripts: Config & Story Engine -->
+  <script src="site.config.js"></script>
+  <script src="story.js"></script>
+</body>
+</html>
