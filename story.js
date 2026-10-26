@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = encodeURIComponent(
       `Hello Web Developers! I am interested in the ${packageName} (${price}) for my business in Gokak / North Karnataka. Please tell me the next step.`
     );
-    window.open(`https://wa.me/919XXXXXXXXX?text=${text}`, "_blank");
+    window.open(`https://wa.me/919860389030?text=${text}`, "_blank");
   };
 
   // 9. General WhatsApp CTA Helper
@@ -689,7 +689,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = encodeURIComponent(
       `Hello Web Developers! I saw your website and would like to chat about: ${topic || "building a website for my shop in Gokak"}.`
     );
-    window.open(`https://wa.me/919XXXXXXXXX?text=${text}`, "_blank");
+    window.open(`https://wa.me/919860389030?text=${text}`, "_blank");
   };
 
   // 10. Legal Terms & Compliance Dialog Modal Controller

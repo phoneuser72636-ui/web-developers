@@ -10,14 +10,14 @@ window.SITE_CONFIG = {
     tagline: "Building ideas online",
     location: "Gokak, Karnataka 591307",
     region: "Gokak • Belagavi • North Karnataka",
-    phoneDisplay: "+91 9XXXXXXXXX",
-    phoneRaw: "919XXXXXXXXX",
+    phoneDisplay: "+91 98603 89030",
+    phoneRaw: "919860389030",
     turnaround: "5–7 Days",
   },
 
   // WhatsApp Routing Helper
   whatsapp: {
-    baseUrl: "https://wa.me/919XXXXXXXXX",
+    baseUrl: "https://wa.me/919860389030",
     defaultMessage: "Hello Web Developers! I have a shop in Gokak/North Karnataka and want to get a website with WhatsApp ordering.",
     packageMessage: (pkgName, price) => 
       `Hello Web Developers! I am interested in the ${pkgName} (${price}) for my business. Please share details on how we can get started.`,
@@ -134,7 +134,7 @@ window.SITE_CONFIG = {
       result: "Custom WhatsApp catalog and direct appointment engines built for any local business.",
       stat: "25+ Local Systems",
       image: "fan-deck",
-      url: "https://wa.me/919XXXXXXXXX",
+      url: "https://wa.me/919860389030",
       tags: ["Car Service", "Machinery", "Clinics", "Hardware", "Textiles"]
     }
   ],
@@ -163,7 +163,7 @@ window.SITE_CONFIG = {
     {
       id: "standard",
       name: "Standard",
-      price: "₹17,000",
+      price: "₹22,000",
       cadence: "one-time",
       desc: "Ideal for growing shops, showrooms, restaurants, and local businesses.",
       popular: true,
@@ -179,12 +179,12 @@ window.SITE_CONFIG = {
         "1st Year Domain & Fast Cloud Hosting Included",
         "3 Months Friendly Support & Edits",
       ],
-      whatsappPrefill: "Standard Package (₹17,000)",
+      whatsappPrefill: "Standard Package (₹22,000)",
     },
     {
       id: "premium",
       name: "Premium",
-      price: "₹22,000",
+      price: "₹32,000",
       cadence: "one-time",
       desc: "For established businesses and multi-branch showrooms.",
       popular: false,
@@ -198,18 +198,18 @@ window.SITE_CONFIG = {
         "1st Year Premium Domain & Fast Cloud Hosting Included",
         "6 Months Ongoing Priority Support & Edits",
       ],
-      whatsappPrefill: "Premium Package (₹22,000)",
+      whatsappPrefill: "Premium Package (₹32,000)",
     },
     {
       id: "vip-blogger",
       name: "VIP + Local Blogger",
-      price: "₹29,000",
+      price: "₹37,000",
       cadence: "one-time",
       desc: "Complete digital presence combined with a local blogger to visit and cover your business.",
       popular: false,
       tag: "Maximum Traction",
       included: [
-        "Everything in Premium (₹22,000), plus:",
+        "Everything in Premium (₹32,000), plus:",
         "Local Blogger Visit to Cover Your Shop & Business",
         "Custom Promotional Reel for Instagram & WhatsApp Status",
         "Google Business Profile Review Acceleration Strategy",
@@ -217,7 +217,7 @@ window.SITE_CONFIG = {
         "1st Year Premium Domain & Cloud Hosting Included",
         "1 Year Priority Technical Support & Upkeep",
       ],
-      whatsappPrefill: "VIP + Local Blogger Package (₹29,000)",
+      whatsappPrefill: "VIP + Local Blogger Package (₹37,000)",
     }
   ],
 
@@ -232,7 +232,7 @@ window.SITE_CONFIG = {
     },
     {
       metric: "Total Cost",
-      us: "₹12,000 – ₹29,000 (One-Time)",
+      us: "₹12,000 – ₹37,000 (One-Time)",
       usNote: "Clear, transparent one-time pricing",
       agency: "₹75,000 to ₹1,50,000+",
       agencyNote: "Plus ₹10,000/month retainer fees",
@@ -264,7 +264,7 @@ window.SITE_CONFIG = {
   close: {
     headline: "Ready to be the most popular shop in town?",
     subheadline: "Message us on WhatsApp. We'll check your Google ranking and share a custom preview plan for your business.",
-    cta: "Message on WhatsApp (+91 9XXXXXXXXX) →",
-    phoneNote: "Direct line: +91 9XXXXXXXXX • Varadai Complex, Gokak",
+    cta: "Message on WhatsApp (+91 98603 89030) →",
+    phoneNote: "Direct line: +91 98603 89030 • Varadai Complex, Gokak",
   }
 };

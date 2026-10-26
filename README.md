@@ -2,7 +2,7 @@
 > **Studio**: Web Developers  
 > **Tagline**: Building ideas online  
 > **Location**: Gokak, Karnataka, India  
-> **Primary Conversion**: Direct WhatsApp Inquiries (`+91 9XXXXXXXXX`)
+> **Primary Conversion**: Direct WhatsApp Inquiries (`+91 98603 89030`)
 
 ---
 
@@ -17,7 +17,7 @@ Instead of generic template cards or feature lists, it takes visitors through a 
 4. **Scene 3 (The Switch)**: Switching to the owner's own official fast site where 100% of the money stays with them.
 5. **Scene 4 (Orders Roll In)**: WhatsApp chat bubbles stacking with real customer orders.
 6. **Scene 5 (The Work)**: Pinned horizontal scroll through 4 local flagships (Terrace Town Kitchen 29, Kalburgi Karadantu & Sweets, Punarvi Jewels Showroom, Style Heaven Menswear).
-7. **Scene 6 (The Prices)**: Editorial offset layout of 4 transparent packages (₹12k, ₹17k, ₹22k, ₹29k).
+7. **Scene 6 (The Prices)**: Editorial offset layout of 4 transparent packages (₹12k, ₹22k, ₹32k, ₹37k).
 8. **Scene 7 (Us vs. The Agency)**: Split timeline comparing 48-hour delivery vs. 6-12 week agency delays.
 9. **Scene 8 (The Close)**: "Ready to be the most popular shop in town?" + Massive magnetic WhatsApp button.
 
@@ -30,7 +30,7 @@ All website copy, phone numbers, WhatsApp messages, package rates, and client de
 📄 **`site.config.js`**
 
 ### Examples:
-- To update the WhatsApp number: change `phoneRaw: "919XXXXXXXXX"` and `phoneDisplay`.
+- To update the WhatsApp number: change `phoneRaw: "919860389030"` and `phoneDisplay`.
 - To update package pricing: edit the `packages` array inside `site.config.js`.
 - To change client showcase details: edit the `work` array inside `site.config.js`.
 
