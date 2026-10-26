@@ -322,22 +322,34 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // SCENE 4: WhatsApp Messages Stacking in
-    const waBubbles = gsap.utils.toArray(".scene-4-bubble");
-    waBubbles.forEach((bubble, idx) => {
-      gsap.from(bubble, {
-        scrollTrigger: {
-          trigger: bubble,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
+    const scene4 = document.getElementById("scene-4");
+    if (scene4) {
+      ScrollTrigger.create({
+        trigger: "#scene-4",
+        start: "top 75%",
+        onEnter: () => {
+          gsap.fromTo(".scene-4-bubble",
+            { opacity: 0, y: 20, scale: 0.94 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.45, stagger: 0.1, ease: "back.out(1.2)", overwrite: "auto" }
+          );
         },
-        opacity: 0,
-        y: 20,
-        scale: 0.92,
-        duration: 0.5,
-        ease: "power2.out",
-        delay: idx * 0.1
+        onLeaveBack: () => {
+          gsap.to(".scene-4-bubble", {
+            opacity: 0,
+            y: 16,
+            scale: 0.94,
+            duration: 0.25,
+            stagger: 0.04,
+            overwrite: "auto"
+          });
+        },
+        onRefresh: (self) => {
+          if (self.isActive || self.progress > 0) {
+            gsap.set(".scene-4-bubble", { opacity: 1, y: 0, scale: 1 });
+          }
+        }
       });
-    });
+    }
 
     // SCENE 5: Horizontal Scroll Work Gallery
     const workTrack = document.getElementById("horizontal-work-track");
@@ -740,4 +752,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Refresh ScrollTrigger once all fonts, stylesheets, and assets settle
+  window.addEventListener("load", () => {
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+    }
+  });
 });
