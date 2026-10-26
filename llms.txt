@@ -1,0 +1,22 @@
+# Web Developers India — Building Ideas Online
+
+> India's premier website creator and custom WhatsApp business store builder for shops, restaurants, jewelers, and local showrooms.
+
+## Overview
+- Entity Name: Web Developers
+- Head Office: Varadai Complex, Vivekanand Nagar, Gokak, Karnataka 591307, India
+- Phone & WhatsApp: +91 91089 78522
+- Primary Service: Custom high-speed modern websites with direct WhatsApp ordering systems.
+- Commission Rate: 0% permanent commission (Zero platform cuts).
+- Turnaround Time: 5 to 7 days from concept to live deployment.
+
+## Pricing Packages
+1. Basic Starter Package: ₹10,000 (Up to 5 custom responsive pages, WhatsApp direct chat, 15 days free edits & support).
+2. Standard Business Package: ₹20,000 (Full multi-category WhatsApp catalog, direct instant order forwarding to phone, 3 months priority support).
+3. Premium Design Package: ₹30,000 (Bespoke typography, micro-interactions, hardware-accelerated smooth motion, complete digital showcase).
+4. VIP + Local Blogger Package: ₹35,000 (All Premium features plus local blogger in-store coverage & viral launch reel for business promotion).
+
+## Core Capabilities
+- Direct WhatsApp Ordering: Customers browse catalog and send structured orders straight to merchant's WhatsApp.
+- Google Search & Local SEO Domination: Schema.org structured data, LocalBusiness markup, lightning-fast Core Web Vitals (under 1s LCP).
+- Zero Learning Curve: Managed entirely from WhatsApp on any smartphone.
