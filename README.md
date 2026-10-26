@@ -2,7 +2,7 @@
 > **Studio**: Web Developers  
 > **Tagline**: Building ideas online  
 > **Location**: Gokak, Karnataka, India  
-> **Primary Conversion**: Direct WhatsApp Inquiries (`+91 91089 78522`)
+> **Primary Conversion**: Direct WhatsApp Inquiries (`+91 9XXXXXXXXX`)
 
 ---
 
@@ -30,7 +30,7 @@ All website copy, phone numbers, WhatsApp messages, package rates, and client de
 📄 **`site.config.js`**
 
 ### Examples:
-- To update the WhatsApp number: change `phoneRaw: "919108978522"` and `phoneDisplay`.
+- To update the WhatsApp number: change `phoneRaw: "919XXXXXXXXX"` and `phoneDisplay`.
 - To update package pricing: edit the `packages` array inside `site.config.js`.
 - To change client showcase details: edit the `work` array inside `site.config.js`.
 

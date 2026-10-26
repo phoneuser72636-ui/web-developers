@@ -10,14 +10,14 @@ window.SITE_CONFIG = {
     tagline: "Building ideas online",
     location: "Gokak, Karnataka 591307",
     region: "Gokak • Belagavi • North Karnataka",
-    phoneDisplay: "+91 91089 78522",
-    phoneRaw: "919108978522",
+    phoneDisplay: "+91 9XXXXXXXXX",
+    phoneRaw: "919XXXXXXXXX",
     turnaround: "5–7 Days",
   },
 
   // WhatsApp Routing Helper
   whatsapp: {
-    baseUrl: "https://wa.me/919108978522",
+    baseUrl: "https://wa.me/919XXXXXXXXX",
     defaultMessage: "Hello Web Developers! I have a shop in Gokak/North Karnataka and want to get a website with WhatsApp ordering.",
     packageMessage: (pkgName, price) => 
       `Hello Web Developers! I am interested in the ${pkgName} (${price}) for my business. Please share details on how we can get started.`,
@@ -134,7 +134,7 @@ window.SITE_CONFIG = {
       result: "Custom WhatsApp catalog and direct appointment engines built for any local business.",
       stat: "25+ Local Systems",
       image: "fan-deck",
-      url: "https://wa.me/919108978522",
+      url: "https://wa.me/919XXXXXXXXX",
       tags: ["Car Service", "Machinery", "Clinics", "Hardware", "Textiles"]
     }
   ],
@@ -263,7 +263,7 @@ window.SITE_CONFIG = {
   close: {
     headline: "Ready to be the most popular shop in town?",
     subheadline: "Message us on WhatsApp. We'll check your Google ranking and share a custom preview plan for your business.",
-    cta: "Message on WhatsApp (+91 91089 78522) →",
-    phoneNote: "Direct line: 91089 78522 • Varadai Complex, Gokak",
+    cta: "Message on WhatsApp (+91 9XXXXXXXXX) →",
+    phoneNote: "Direct line: +91 9XXXXXXXXX • Varadai Complex, Gokak",
   }
 };

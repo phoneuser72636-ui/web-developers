@@ -6,33 +6,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   const config = window.SITE_CONFIG || {};
 
-  // 1. Initialize Lenis Smooth Scroll
+  // 1. Initialize Lenis Smooth Scroll (Optimized for 60-120fps; Native Momentum on Mobile)
   let lenis = null;
   const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || ('ontouchstart' in window);
 
-  if (typeof Lenis !== "undefined" && !isReduced) {
+  // On touch devices, use native hardware momentum scrolling for zero lag
+  if (typeof Lenis !== "undefined" && !isReduced && !isTouchDevice) {
     lenis = new Lenis({
-      lerp: 0.09,
+      lerp: 0.1,
       wheelMultiplier: 0.95,
-      touchMultiplier: 1.2,
       smoothWheel: true,
       smoothTouch: false,
     });
 
-    // Synchronize Lenis with GSAP ScrollTrigger
+    // Synchronize Lenis cleanly with GSAP ScrollTrigger ticker (single RAF loop)
     if (typeof ScrollTrigger !== "undefined") {
       lenis.on("scroll", ScrollTrigger.update);
       gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
       });
-      gsap.ticker.lagSmoothing(0);
-    }
-
-    function raf(time) {
-      lenis.raf(time);
+      gsap.ticker.lagSmoothing(500, 33);
+    } else {
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
   }
 
   // 2. Preloader Animation (Under 1.4s)
@@ -457,163 +458,207 @@ document.addEventListener("DOMContentLoaded", () => {
         fanRafId = requestAnimationFrame(renderFanDeck);
       }
 
-      fanDeckStage.addEventListener("mousemove", onPointerMove, { passive: true });
-      fanDeckStage.addEventListener("mouseleave", onPointerLeave, { passive: true });
-      fanDeckStage.addEventListener("touchstart", onPointerMove, { passive: true });
-      fanDeckStage.addEventListener("touchmove", onPointerMove, { passive: true });
-      fanDeckStage.addEventListener("touchend", onPointerLeave, { passive: true });
+      if (window.matchMedia("(pointer: fine)").matches) {
+        fanDeckStage.addEventListener("mousemove", onPointerMove, { passive: true });
+        fanDeckStage.addEventListener("mouseleave", onPointerLeave, { passive: true });
+      }
     }
   }
 
-  // 7c. Pure Organic Soft Balloon & Bouncy Elastic Physics (No color change / No distorted geometry)
+  // 7c. Pure Organic Soft Balloon & Bouncy Elastic Physics (Desktop Magnetic / Mobile Instant Touch)
   function initBalloonButtons() {
     const hugeButton = document.querySelector(".btn-huge-wa");
     if (!hugeButton) return;
 
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
     let isHovered = false;
 
-    hugeButton.addEventListener("mousemove", (e) => {
-      isHovered = true;
-      const rect = hugeButton.getBoundingClientRect();
-      const localX = e.clientX - rect.left;
-      const localY = e.clientY - rect.top;
+    if (isFinePointer) {
+      // Desktop: Magnetic fluid cursor tracking and soft rubber squash
+      hugeButton.addEventListener("mousemove", (e) => {
+        isHovered = true;
+        const rect = hugeButton.getBoundingClientRect();
+        const localX = e.clientX - rect.left;
+        const localY = e.clientY - rect.top;
 
-      // Normalized coordinates (-1 to +1 from button center)
-      const nx = (localX / rect.width) * 2 - 1;
-      const ny = (localY / rect.height) * 2 - 1;
+        const nx = (localX / rect.width) * 2 - 1;
+        const ny = (localY / rect.height) * 2 - 1;
 
-      // Balloon soft displacement & squish: pushes slightly where hand touches
-      const pullX = nx * 14;
-      const pullY = ny * 8;
-      // When pressed on horizontal edges, squishes vertically and bulges horizontally
-      const scaleX = 1.03 + Math.abs(nx) * 0.02;
-      const scaleY = 1.03 - Math.abs(ny) * 0.02;
-      const rot = nx * 2.5;
+        const pullX = nx * 14;
+        const pullY = ny * 8;
+        const scaleX = 1.03 + Math.abs(nx) * 0.02;
+        const scaleY = 1.03 - Math.abs(ny) * 0.02;
+        const rot = nx * 2.5;
 
-      if (window.gsap) {
-        gsap.to(hugeButton, {
-          x: pullX,
-          y: pullY,
-          rotation: rot,
-          scaleX: scaleX,
-          scaleY: scaleY,
-          duration: 0.28,
-          ease: "power2.out",
-          overwrite: "auto"
-        });
+        if (window.gsap) {
+          gsap.to(hugeButton, {
+            x: pullX,
+            y: pullY,
+            rotation: rot,
+            scaleX: scaleX,
+            scaleY: scaleY,
+            duration: 0.28,
+            ease: "power2.out",
+            overwrite: "auto"
+          });
 
-        // Floating soft text parallax inside
-        const span = hugeButton.querySelector("span");
-        if (span) {
-          gsap.to(span, {
-            x: nx * 6,
-            y: ny * 3,
-            duration: 0.22,
+          const span = hugeButton.querySelector("span");
+          if (span) {
+            gsap.to(span, {
+              x: nx * 6,
+              y: ny * 3,
+              duration: 0.22,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          }
+        }
+      });
+
+      hugeButton.addEventListener("mouseleave", () => {
+        isHovered = false;
+        if (window.gsap) {
+          gsap.to(hugeButton, {
+            x: 0,
+            y: 0,
+            rotation: 0,
+            scaleX: 1,
+            scaleY: 1,
+            duration: 1.4,
+            ease: "elastic.out(1.7, 0.25)",
+            overwrite: "auto"
+          });
+
+          const span = hugeButton.querySelector("span");
+          if (span) {
+            gsap.to(span, {
+              x: 0,
+              y: 0,
+              duration: 1.0,
+              ease: "elastic.out(1.5, 0.28)",
+              overwrite: "auto"
+            });
+          }
+        }
+      });
+
+      hugeButton.addEventListener("mousedown", () => {
+        if (window.gsap) {
+          gsap.to(hugeButton, {
+            scaleX: 1.08,
+            scaleY: 0.90,
+            y: "+=3",
+            duration: 0.12,
             ease: "power2.out",
             overwrite: "auto"
           });
         }
-      }
-    });
+      });
 
-    hugeButton.addEventListener("mouseleave", () => {
-      isHovered = false;
-      // High-frequency balloon jelly snap-back with natural rubber vibration
-      if (window.gsap) {
-        gsap.to(hugeButton, {
-          x: 0,
-          y: 0,
-          rotation: 0,
-          scaleX: 1,
-          scaleY: 1,
-          duration: 1.4,
-          ease: "elastic.out(1.7, 0.25)", // Authentic soft rubber damping wobble
-          overwrite: "auto"
-        });
-
-        const span = hugeButton.querySelector("span");
-        if (span) {
-          gsap.to(span, {
-            x: 0,
-            y: 0,
-            duration: 1.0,
-            ease: "elastic.out(1.5, 0.28)",
-            overwrite: "auto"
-          });
-        }
-      }
-    });
-
-    // Soft finger press squash (like squeezing a real balloon)
-    hugeButton.addEventListener("mousedown", () => {
-      if (window.gsap) {
-        gsap.to(hugeButton, {
-          scaleX: 1.08,
-          scaleY: 0.90,
-          y: "+=3",
-          duration: 0.12,
-          ease: "power2.out",
-          overwrite: "auto"
-        });
-      }
-    });
-
-    // Soft bouncy balloon rebound
-    hugeButton.addEventListener("mouseup", () => {
-      if (window.gsap) {
-        gsap.to(hugeButton, {
-          scaleX: isHovered ? 1.04 : 1,
-          scaleY: isHovered ? 1.04 : 1,
-          duration: 0.9,
-          ease: "elastic.out(2.2, 0.22)",
-          overwrite: "auto"
-        });
-      }
-    });
-
-    // Also apply organic bounce to smaller pills (.btn-wa-pill)
-    const pills = document.querySelectorAll(".btn-wa-pill");
-    pills.forEach((pill) => {
-      pill.addEventListener("mouseenter", () => {
+      hugeButton.addEventListener("mouseup", () => {
         if (window.gsap) {
-          gsap.to(pill, {
-            scale: 1.05,
-            duration: 0.35,
-            ease: "back.out(2.5)",
+          gsap.to(hugeButton, {
+            scaleX: isHovered ? 1.04 : 1,
+            scaleY: isHovered ? 1.04 : 1,
+            duration: 0.9,
+            ease: "elastic.out(2.2, 0.22)",
             overwrite: "auto"
           });
         }
       });
-      pill.addEventListener("mouseleave", () => {
+    } else {
+      // Mobile / Touchscreen: Zero main-thread lag, immediate responsive touch squash & bounce
+      hugeButton.addEventListener("touchstart", () => {
         if (window.gsap) {
-          gsap.to(pill, {
-            scale: 1,
-            duration: 0.7,
-            ease: "elastic.out(1.6, 0.3)",
-            overwrite: "auto"
-          });
-        }
-      });
-      pill.addEventListener("mousedown", () => {
-        if (window.gsap) {
-          gsap.to(pill, {
-            scale: 0.94,
+          gsap.to(hugeButton, {
+            scale: 0.96,
             duration: 0.1,
             ease: "power2.out",
             overwrite: "auto"
           });
         }
-      });
-      pill.addEventListener("mouseup", () => {
+      }, { passive: true });
+
+      hugeButton.addEventListener("touchend", () => {
         if (window.gsap) {
-          gsap.to(pill, {
-            scale: 1.05,
-            duration: 0.6,
-            ease: "elastic.out(2, 0.25)",
+          gsap.to(hugeButton, {
+            scale: 1,
+            duration: 0.55,
+            ease: "elastic.out(2, 0.28)",
             overwrite: "auto"
           });
         }
-      });
+      }, { passive: true });
+    }
+
+    // Organic bounce for pills (.btn-wa-pill)
+    const pills = document.querySelectorAll(".btn-wa-pill");
+    pills.forEach((pill) => {
+      if (isFinePointer) {
+        pill.addEventListener("mouseenter", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 1.05,
+              duration: 0.35,
+              ease: "back.out(2.5)",
+              overwrite: "auto"
+            });
+          }
+        });
+        pill.addEventListener("mouseleave", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 1,
+              duration: 0.7,
+              ease: "elastic.out(1.6, 0.3)",
+              overwrite: "auto"
+            });
+          }
+        });
+        pill.addEventListener("mousedown", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 0.94,
+              duration: 0.1,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          }
+        });
+        pill.addEventListener("mouseup", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 1.05,
+              duration: 0.6,
+              ease: "elastic.out(2, 0.25)",
+              overwrite: "auto"
+            });
+          }
+        });
+      } else {
+        // Mobile touch response
+        pill.addEventListener("touchstart", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 0.95,
+              duration: 0.1,
+              ease: "power2.out",
+              overwrite: "auto"
+            });
+          }
+        }, { passive: true });
+
+        pill.addEventListener("touchend", () => {
+          if (window.gsap) {
+            gsap.to(pill, {
+              scale: 1,
+              duration: 0.45,
+              ease: "back.out(2)",
+              overwrite: "auto"
+            });
+          }
+        }, { passive: true });
+      }
     });
   }
 
@@ -624,7 +669,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = encodeURIComponent(
       `Hello Web Developers! I am interested in the ${packageName} (${price}) for my business in Gokak / North Karnataka. Please tell me the next step.`
     );
-    window.open(`https://wa.me/919108978522?text=${text}`, "_blank");
+    window.open(`https://wa.me/919XXXXXXXXX?text=${text}`, "_blank");
   };
 
   // 9. General WhatsApp CTA Helper
@@ -632,7 +677,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const text = encodeURIComponent(
       `Hello Web Developers! I saw your website and would like to chat about: ${topic || "building a website for my shop in Gokak"}.`
     );
-    window.open(`https://wa.me/919108978522?text=${text}`, "_blank");
+    window.open(`https://wa.me/919XXXXXXXXX?text=${text}`, "_blank");
   };
 
   // 10. Legal Terms & Compliance Dialog Modal Controller
