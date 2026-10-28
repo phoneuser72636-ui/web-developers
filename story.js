@@ -381,17 +381,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const workSection = document.getElementById("scene-work");
 
     if (workTrack && workSection && window.innerWidth > 768) {
-      const scrollAmount = workTrack.scrollWidth - window.innerWidth + 80;
+      const getScrollDistance = () => workTrack.scrollWidth - window.innerWidth + 140;
 
       gsap.to(workTrack, {
-        x: -scrollAmount,
+        x: () => -getScrollDistance(),
         ease: "none",
         scrollTrigger: {
           trigger: workSection,
           pin: true,
-          scrub: 1,
+          anticipatePin: 1,
+          scrub: 1.2,
           start: "top top",
-          end: () => `+=${scrollAmount}`,
+          end: () => `+=${Math.max(1800, getScrollDistance() * 1.6)}`,
           invalidateOnRefresh: true,
         }
       });

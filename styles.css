@@ -795,10 +795,10 @@ header.site-header.nav-hidden {
 /* SCENE 5: THE WORK (PINNED HORIZONTAL SCROLL) */
 .horizontal-work-section {
   position: relative;
-  background: var(--paper-soft);
-  border-top: 1px solid var(--border-line);
-  border-bottom: 1px solid var(--border-line);
-  padding: 36px 0 24px;
+  background: #08080C;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 50px 0 36px;
   overflow: hidden;
 }
 .work-track-wrapper {
@@ -810,19 +810,23 @@ header.site-header.nav-hidden {
 }
 .work-card-device {
   width: 440px;
-  background: #FFFFFF;
-  border: 1px solid var(--border-line);
-  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(23, 23, 27, 0.88) 0%, rgba(13, 13, 17, 0.96) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 20px;
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
 }
 .work-card-device:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(0,0,0,0.07);
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(185, 171, 255, 0.4);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 35px rgba(185, 171, 255, 0.15);
 }
 @media (max-width: 768px) {
   .horizontal-work-section {
@@ -1024,40 +1028,53 @@ header.site-header.nav-hidden {
 .work-info-block {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 .work-client-name {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 1.15;
-  color: var(--ink);
+  color: #FFFFFF;
 }
 .work-client-type {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--ink-dim);
+  color: #B9ABFF;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.work-client-result {
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.4;
-}
-.work-tag-row {
+.work-trust-metric {
   display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-top: 6px;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.35;
 }
-.work-pill-tag {
-  font-size: 11px;
-  font-family: var(--font-mono);
-  background: var(--paper-soft);
-  border: 1px solid var(--border-line);
-  padding: 3px 8px;
-  border-radius: 4px;
-  color: var(--ink-soft);
+.work-trust-metric .trust-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #19C37D;
+  box-shadow: 0 0 8px #19C37D;
+  flex-shrink: 0;
+}
+.work-card-device .btn-ghost-dark {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  transition: all 0.25s var(--ease-out);
+}
+.work-card-device .btn-ghost-dark:hover {
+  background: #FFFFFF !important;
+  color: #111111 !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
 }
 
 /* SCENE 6: THE PRICES (EDITORIAL LAYERED LAYOUT) */
