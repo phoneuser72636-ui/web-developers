@@ -869,6 +869,173 @@ header.site-header.nav-hidden {
   background: var(--paper-soft);
 }
 
+/* Fan Deck Interactive Component in Card 5 (Tri-Card Splayed Spread) */
+.fan-deck-stage {
+  background: radial-gradient(circle at 50% 65%, #22201D 0%, #11100F 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+}
+
+.fan-deck-container {
+  position: relative;
+  width: 200px;
+  height: 155px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.fan-card {
+  position: absolute;
+  width: 104px;
+  height: 145px;
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12);
+  transform-origin: 50% 120%;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s;
+  user-select: none;
+  cursor: pointer;
+  will-change: transform;
+}
+
+.fan-card-left {
+  background: linear-gradient(155deg, #7C2D12 0%, #3B1607 100%);
+  color: #FEF3C7;
+  transform: rotate(-18deg) translate(-26px, 10px);
+  z-index: 1;
+}
+
+.fan-card-center {
+  background: linear-gradient(155deg, #B45309 0%, #451A03 100%);
+  color: #FFFFFF;
+  transform: rotate(0deg) translate(0px, -4px);
+  z-index: 3;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 1.5px rgba(245, 158, 11, 0.5);
+}
+
+.fan-card-right {
+  background: linear-gradient(155deg, #065F46 0%, #022C22 100%);
+  color: #D1FAE5;
+  transform: rotate(18deg) translate(26px, 10px);
+  z-index: 2;
+}
+
+.fan-card-top-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.9;
+}
+
+.fan-card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.fan-card-dot.active {
+  background: #F59E0B;
+  box-shadow: 0 0 6px #F59E0B;
+}
+
+.fan-card-orb {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.orb-amber {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(120, 53, 15, 0.12) 70%, transparent 100%);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
+}
+
+.orb-gold {
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(180, 83, 9, 0.15) 70%, transparent 100%);
+  box-shadow: 0 0 22px rgba(245, 158, 11, 0.45);
+}
+
+.orb-emerald {
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.45) 0%, rgba(6, 95, 70, 0.12) 70%, transparent 100%);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+.fan-card-emoji {
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.fan-card-badge-plate {
+  background: #CCFF00;
+  color: #111111;
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 6px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(204, 255, 0, 0.35);
+  white-space: nowrap;
+}
+
+.fan-card-tagline {
+  font-family: var(--font-mono);
+  font-size: 7.5px;
+  font-weight: 700;
+  text-align: center;
+  opacity: 0.75;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .fan-deck-container {
+    width: 170px;
+    height: 145px;
+    transform: scale(0.92);
+  }
+  .fan-card {
+    width: 95px;
+    height: 135px;
+    padding: 8px 6px;
+    border-radius: 10px;
+  }
+  .fan-card-orb {
+    width: 38px;
+    height: 38px;
+  }
+  .fan-card-emoji {
+    font-size: 16px;
+  }
+}
+
+
 .flux-card-img {
   width: 100%;
   height: 100%;

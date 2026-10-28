@@ -608,10 +608,14 @@ document.addEventListener("DOMContentLoaded", () => {
         fanRafId = requestAnimationFrame(renderFanDeck);
       }
 
-      if (window.matchMedia("(pointer: fine)").matches) {
-        fanDeckStage.addEventListener("mousemove", onPointerMove, { passive: true });
-        fanDeckStage.addEventListener("mouseleave", onPointerLeave, { passive: true });
-      }
+      // Listen to mouse, pointer, and touch events
+      fanDeckStage.addEventListener("mousemove", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("mouseleave", onPointerLeave, { passive: true });
+      fanDeckStage.addEventListener("pointermove", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("pointerleave", onPointerLeave, { passive: true });
+      fanDeckStage.addEventListener("touchstart", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("touchmove", onPointerMove, { passive: true });
+      fanDeckStage.addEventListener("touchend", onPointerLeave, { passive: true });
     }
   }
 
