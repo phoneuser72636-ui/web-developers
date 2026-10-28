@@ -170,7 +170,7 @@ window.SITE_CONFIG = {
       popular: true,
       tag: "Most Popular",
       included: [
-        "Custom Modern UI/UX Layout (Up to 8 Pages)",
+        "Custom Modern UI/UX Layout",
         "Mobile + Tablet Optimized",
         "Digital Product / Service Showcase",
         "Interactive WhatsApp Inquiry Form",
@@ -191,7 +191,7 @@ window.SITE_CONFIG = {
       popular: false,
       included: [
         "Premium Design & Smooth Motion",
-        "Complete Flagship Showcase & Branding (Up to 12 Pages)",
+        "Complete Flagship Showcase & Branding",
         "Deep Product / Service Catalog (Direct WhatsApp)",
         "Multi-Location Google Maps & Direct Routing",
         "Advanced Local SEO & Google Search Setup",
@@ -211,7 +211,7 @@ window.SITE_CONFIG = {
       popular: false,
       tag: "Maximum Traction",
       included: [
-        "Custom Flagship Digital Showcase (Up to 15 Pages)",
+        "Custom Flagship Digital Showcase",
         "Local Blogger In-Store Visit & Business Coverage",
         "Custom Promotional Video Reel for Instagram & Status",
         "Google Business Profile Setup & Review Strategy",
