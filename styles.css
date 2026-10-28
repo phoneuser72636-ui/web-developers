@@ -1238,6 +1238,142 @@ header.site-header.nav-hidden {
   margin-top: 1px;
 }
 
+/* Pricing Revision & Fair Scope Policy Banner */
+.pricing-revision-card {
+  margin-top: 36px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+.prc-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-line);
+  margin-bottom: 20px;
+}
+.prc-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--paper-dark);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-line);
+}
+.prc-subtext {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+.prc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .prc-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+.prc-col {
+  background: var(--paper);
+  border-radius: 12px;
+  padding: 18px 20px;
+  border: 1px solid transparent;
+}
+.prc-col-allowed {
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.03);
+}
+.prc-col-excluded {
+  border-color: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.02);
+}
+.prc-col-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.prc-icon-yes {
+  color: var(--signal-green);
+  font-weight: 900;
+  font-size: 15px;
+}
+.prc-icon-no {
+  color: #EF4444;
+  font-weight: 900;
+  font-size: 14px;
+}
+.prc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+.prc-list li {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  position: relative;
+  padding-left: 16px;
+}
+.prc-col-allowed .prc-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--signal-green);
+  font-weight: bold;
+}
+.prc-col-excluded .prc-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #EF4444;
+  font-weight: bold;
+}
+.prc-footer-note {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--ink-dim);
+}
+.prc-policy-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+.prc-policy-link:hover {
+  color: var(--signal-green);
+}
+
 /* SCENE 7: US VS. THE AGENCY (RACE / TIMELINE) */
 .agency-race-section {
   padding: 100px 0;
