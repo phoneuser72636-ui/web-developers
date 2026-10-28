@@ -12,13 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const isTouchDevice = window.matchMedia("(pointer: coarse)").matches || ('ontouchstart' in window);
 
   // On touch devices, use native hardware momentum scrolling for zero lag
-  if (typeof Lenis !== "undefined" && !isReduced && !isTouchDevice) {
+  if (typeof Lenis !== "undefined" && !isReduced) {
     lenis = new Lenis({
       lerp: 0.1,
       wheelMultiplier: 0.95,
-      smoothWheel: true,
+      smoothWheel: !isTouchDevice,
       smoothTouch: false,
     });
+    window.lenis = lenis;
 
     // Synchronize Lenis cleanly with GSAP ScrollTrigger ticker (single RAF loop)
     if (typeof ScrollTrigger !== "undefined") {
@@ -145,19 +146,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Clean Smooth Scroll for Internal Anchors (No ugly #hash in browser URL)
+  // Clean Smooth Fast Glide for Internal Anchors (High-Speed Inertia & Feather Landing)
+  window.smoothGlideTo = function(target, offset = -60, duration = 1.0) {
+    if (!target) return;
+    if (window.lenis && typeof window.lenis.scrollTo === "function") {
+      window.lenis.scrollTo(target, {
+        offset: offset,
+        duration: duration,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+      return;
+    }
+    const startY = window.pageYOffset || document.documentElement.scrollTop;
+    const targetY = target.getBoundingClientRect().top + startY + offset;
+    const distance = targetY - startY;
+    if (Math.abs(distance) < 4) return;
+    const durationMs = duration * 1000;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const ease = 1 - Math.pow(1 - progress, 4);
+      window.scrollTo(0, Math.round(startY + distance * ease));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  };
+
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", function(e) {
       const href = this.getAttribute("href");
-      if (!href || href === "#") return;
+      if (!href) return;
+      if (href === "#") {
+        e.preventDefault();
+        window.smoothGlideTo(document.body, 0, 0.8);
+        return;
+      }
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        if (window.lenis && typeof window.lenis.scrollTo === "function") {
-          window.lenis.scrollTo(target, { offset: -40, duration: 1.2 });
-        } else {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
+        window.smoothGlideTo(target, -60, 1.0);
         if (window.history && window.history.replaceState) {
           window.history.replaceState(null, null, window.location.pathname + window.location.search);
         }

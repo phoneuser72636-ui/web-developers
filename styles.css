@@ -59,7 +59,12 @@ html {
   line-height: 1.55;
   overflow-x: clip;
   scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  scroll-padding-top: 72px;
   -webkit-font-smoothing: antialiased;
+}
+
+section[id], [id^="scene-"] {
+  scroll-margin-top: 72px;
 }
 
 body {
