@@ -196,7 +196,7 @@ window.SITE_CONFIG = {
         "Advanced Local SEO & Google Search Setup",
         "Counter QR Standee Printable Design",
         "1st Year Premium Domain & Fast Cloud Hosting Included",
-        "Up to 8 Minor Edit Rounds + 6 Months Tech Support",
+        "Up to 6 Minor Edit Rounds + 6 Months Tech Support",
       ],
       whatsappPrefill: "Premium Package (₹32,000)",
     },
@@ -215,7 +215,7 @@ window.SITE_CONFIG = {
         "Google Business Profile Review Acceleration Strategy",
         "Dedicated Day-1 Launch Push Across Town",
         "1st Year Premium Domain & Cloud Hosting Included",
-        "12 Priority Edit Rounds + 1 Year Tech Upkeep",
+        "8 Priority Edit Rounds + 1 Year Tech Upkeep",
       ],
       whatsappPrefill: "VIP + Local Blogger Package (₹37,000)",
     }
