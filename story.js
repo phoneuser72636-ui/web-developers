@@ -115,13 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function renderCursor() {
-      if (document.body.classList.contains("modal-open")) {
-        cursor.style.opacity = "0";
-      } else {
-        curX += (mouseX - curX) * 0.22;
-        curY += (mouseY - curY) * 0.22;
-        cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
-      }
+      curX += (mouseX - curX) * 0.22;
+      curY += (mouseY - curY) * 0.22;
+      cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
       requestAnimationFrame(renderCursor);
     }
     requestAnimationFrame(renderCursor);
@@ -130,9 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor.style.opacity = "0";
     });
     document.addEventListener("mouseenter", () => {
-      if (!document.body.classList.contains("modal-open")) {
-        cursor.style.opacity = "1";
-      }
+      cursor.style.opacity = "1";
     });
 
     // Smooth halo hover states — Never covers or obscures button text
@@ -697,23 +691,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.openLegalModal = function(tabName) {
     if (!legalModal) return;
+    document.documentElement.classList.add("modal-open");
     document.body.classList.add("modal-open");
-    if (typeof legalModal.showModal === "function") {
-      legalModal.showModal();
-    } else {
-      legalModal.setAttribute("open", "true");
-    }
+    legalModal.setAttribute("open", "true");
     if (tabName) window.switchLegalTab(tabName);
   };
 
   window.closeLegalModal = function() {
     if (!legalModal) return;
+    document.documentElement.classList.remove("modal-open");
     document.body.classList.remove("modal-open");
-    if (typeof legalModal.close === "function") {
-      legalModal.close();
-    } else {
-      legalModal.removeAttribute("open");
-    }
+    legalModal.removeAttribute("open");
   };
 
   window.switchLegalTab = function(tabId) {
@@ -731,23 +719,14 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (legalModal) {
-    legalModal.addEventListener("close", () => {
-      document.body.classList.remove("modal-open");
-    });
-    legalModal.addEventListener("cancel", () => {
-      document.body.classList.remove("modal-open");
-    });
     legalModal.addEventListener("click", (e) => {
       if (e.target === legalModal) {
         window.closeLegalModal();
-        return;
       }
-      const rect = legalModal.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && legalModal.hasAttribute("open")) {
         window.closeLegalModal();
       }
     });
