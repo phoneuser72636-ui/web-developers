@@ -493,9 +493,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (typeof ScrollTrigger !== "undefined" && !isReduced) {
         ScrollTrigger.create({
+          id: "flux-work-trigger",
           trigger: "#scene-work",
-          start: "top 75%",
-          end: "bottom 25%",
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          start: "top top",
+          end: () => "+=" + Math.round(window.innerHeight * 2.8),
+          scrub: 1,
           onUpdate: (self) => {
             if (!isDragging) {
               targetProgress = self.progress * (totalCards - 1);
