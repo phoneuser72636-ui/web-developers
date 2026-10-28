@@ -364,7 +364,6 @@ header.site-header.nav-hidden {
   height: 7px;
   background: var(--signal-green);
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--signal-green);
 }
 .hero-title-box {
   max-width: 1140px;
@@ -792,289 +791,233 @@ header.site-header.nav-hidden {
   margin-top: 4px;
 }
 
-/* SCENE 5: THE WORK (PINNED HORIZONTAL SCROLL) */
-.horizontal-work-section {
+/* =============================================================================
+   SCENE 5: SELECTED CLIENT WORK (3D FLUX WAVE GALLERY)
+   Palette & Geometry: Warm Paper Cream, Editorial Ink, 3D Cylindrical Perspective
+   ============================================================================= */
+.flux-work-section {
   position: relative;
-  background: #08080C;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 50px 0 36px;
+  background: var(--paper);
+  border-top: 1px solid var(--border-line);
+  border-bottom: 1px solid var(--border-line);
+  padding: 80px 0 60px;
   overflow: hidden;
 }
-.work-track-wrapper {
-  display: flex;
-  gap: 28px;
-  padding-left: 24px;
-  width: max-content;
-  align-items: stretch;
+
+.flux-wave-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+  overflow: visible;
+  user-select: none;
+  touch-action: pan-y;
 }
-.work-card-device {
-  width: 440px;
-  background: linear-gradient(145deg, rgba(23, 23, 27, 0.88) 0%, rgba(13, 13, 17, 0.96) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1px solid rgba(255, 255, 255, 0.24);
+
+.flux-wave-track {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 540px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  cursor: grab;
+}
+
+.flux-wave-track:active {
+  cursor: grabbing;
+}
+
+.flux-card {
+  position: absolute;
+  width: 370px;
+  max-width: 86vw;
+  background: #FFFFFF;
+  border: 1px solid var(--border-line);
   border-radius: 20px;
-  padding: 16px 20px;
+  padding: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+  transform-origin: 50% 50%;
+  transition: box-shadow 0.3s var(--ease-out), border-color 0.3s;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-.work-card-device:hover {
-  transform: translateY(-6px) scale(1.01);
-  border-color: rgba(185, 171, 255, 0.4);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 35px rgba(185, 171, 255, 0.15);
+
+.flux-card:hover {
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.09);
+  border-color: var(--border-dark);
 }
-@media (max-width: 768px) {
-  .horizontal-work-section {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding: 60px 0 40px;
-  }
-  .work-track-wrapper {
-    width: max-content;
-    padding: 0 20px;
-    gap: 16px;
-  }
-  .work-card-device {
-    scroll-snap-align: center;
-    width: 82vw;
-    max-width: 360px;
-    padding: 18px;
-  }
-}
-.work-preview-stage {
-  height: 200px;
-  background: #F1ECE1;
-  border-radius: 12px;
+
+.flux-card-stage {
+  height: 220px;
+  border-radius: 14px;
   overflow: hidden;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: var(--paper-soft);
 }
-.work-preview-img {
+
+.flux-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s var(--ease-out);
 }
-.work-card-device:hover .work-preview-img {
-  transform: scale(1.04);
+
+.flux-card:hover .flux-card-img {
+  transform: scale(1.03);
 }
-.work-badge-corner {
+
+.flux-card-badge {
   position: absolute;
   top: 12px;
   left: 12px;
-  background: rgba(17, 17, 17, 0.85);
+  background: rgba(17, 17, 17, 0.88);
   color: #FFFFFF;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 9999px;
-  backdrop-filter: blur(6px);
-  z-index: 10;
+  backdrop-filter: blur(8px);
+  z-index: 5;
 }
 
-/* Fan Deck Component in Scene 5 (Tri-Card Splayed Spread) */
-.fan-deck-stage {
-  background: radial-gradient(circle at 50% 65%, #24201C 0%, #0E0D0C 100%);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 900px;
-}
-.fan-deck-container {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform-style: preserve-3d;
-}
-.fan-card {
-  position: absolute;
-  width: 130px;
-  height: 182px;
-  border-radius: 14px;
-  padding: 12px 10px;
+.flux-card-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.12);
-  transform-origin: 50% 120%;
-  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s;
-  user-select: none;
-  cursor: pointer;
-  will-change: transform;
+  gap: 6px;
 }
-@media (max-width: 600px) {
-  .fan-deck-container {
-    width: 180px;
-    height: 180px;
-    transform: scale(0.92);
-  }
-  .fan-card {
-    width: 112px;
-    height: 160px;
-    padding: 10px 8px;
-    border-radius: 12px;
-  }
-}
-/* Left Card: Auto & Workshop */
-.fan-card-left {
-  background: linear-gradient(155deg, #7C2D12 0%, #3B1607 100%);
-  color: #FEF3C7;
-  transform: rotate(-18deg) translate(-28px, 12px);
-  z-index: 1;
-}
-/* Center Card: Machinery & Industrial */
-.fan-card-center {
-  background: linear-gradient(155deg, #B45309 0%, #451A03 100%);
-  color: #FFFFFF;
-  transform: rotate(0deg) translate(0px, -6px);
-  z-index: 3;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65), 0 0 0 1.5px rgba(245, 158, 11, 0.45);
-}
-/* Right Card: Healthcare & Clinics */
-.fan-card-right {
-  background: linear-gradient(155deg, #065F46 0%, #022C22 100%);
-  color: #D1FAE5;
-  transform: rotate(18deg) translate(28px, 12px);
-  z-index: 2;
-}
-.fan-card-top-label {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  opacity: 0.9;
-}
-.fan-card-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background: currentColor;
-  flex-shrink: 0;
-}
-.fan-card-dot.active {
-  background: #F59E0B;
-  box-shadow: 0 0 8px #F59E0B;
-}
-.fan-card-orb {
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.orb-amber {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(120, 53, 15, 0.12) 70%, transparent 100%);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
-}
-.orb-gold {
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(180, 83, 9, 0.15) 70%, transparent 100%);
-  box-shadow: 0 0 28px rgba(245, 158, 11, 0.45);
-}
-.orb-emerald {
-  background: radial-gradient(circle, rgba(52, 211, 153, 0.45) 0%, rgba(6, 95, 70, 0.12) 70%, transparent 100%);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
-}
-.fan-card-emoji {
-  font-size: 22px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-}
-.fan-card-badge-plate {
-  background: #CCFF00; /* Acid-yellow/neon-signal plate from reference */
-  color: #111111;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 5px 8px;
-  border-radius: 6px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(204, 255, 0, 0.4);
-  white-space: nowrap;
-}
-.fan-card-tagline {
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  text-align: center;
-  opacity: 0.75;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.work-info-block {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.work-client-name {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.15;
-  color: #FFFFFF;
-}
-.work-client-type {
+
+.flux-card-meta {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #B9ABFF;
-  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--ink-dim);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.work-trust-metric {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+
+.flux-card-title {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.flux-card-metric {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-line);
   border-radius: 8px;
   padding: 8px 12px;
-  font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.35;
+  margin-top: 2px;
 }
-.work-trust-metric .trust-dot {
-  width: 6px;
-  height: 6px;
+
+.flux-card-btn {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  border-radius: 9999px;
+  background: var(--ink);
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s var(--ease-out);
+}
+
+.flux-card-btn:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flux-nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.flux-nav-btn {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: #19C37D;
-  box-shadow: 0 0 8px #19C37D;
-  flex-shrink: 0;
+  border: 1px solid var(--border-line);
+  background: #FFFFFF;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s var(--ease-out);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
-.work-card-device .btn-ghost-dark {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+
+.flux-nav-btn:hover {
+  background: var(--ink);
+  color: #FFFFFF;
+  border-color: var(--ink);
+  transform: scale(1.06);
+}
+
+.flux-dots-track {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.flux-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--border-dark);
+  cursor: pointer;
   transition: all 0.25s var(--ease-out);
 }
-.work-card-device .btn-ghost-dark:hover {
-  background: #FFFFFF !important;
-  color: #111111 !important;
-  border-color: #FFFFFF !important;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+
+.flux-dot.active {
+  width: 24px;
+  background: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .flux-work-section {
+    padding: 60px 0 40px;
+  }
+  .flux-wave-track {
+    height: 490px;
+  }
+  .flux-card {
+    width: 310px;
+    padding: 14px;
+  }
+  .flux-card-stage {
+    height: 180px;
+  }
+  .flux-card-title {
+    font-size: 20px;
+  }
+  .flux-card-metric {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
 
 /* SCENE 6: THE PRICES (EDITORIAL LAYERED LAYOUT) */

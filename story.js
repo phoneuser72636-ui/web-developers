@@ -377,25 +377,132 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // SCENE 5: Horizontal Scroll Work Gallery
-    const workTrack = document.getElementById("horizontal-work-track");
-    const workSection = document.getElementById("scene-work");
+    // SCENE 5: 3D Cylindrical Flux Wave Gallery Engine (HorizonX / Fold Architecture)
+    const fluxContainer = document.getElementById("flux-wave-container");
+    const fluxTrack = document.getElementById("flux-wave-track");
+    const fluxCards = Array.from(document.querySelectorAll(".flux-card"));
+    const fluxDots = Array.from(document.querySelectorAll(".flux-dot"));
+    const btnPrev = document.getElementById("flux-btn-prev");
+    const btnNext = document.getElementById("flux-btn-next");
 
-    if (workTrack && workSection && window.innerWidth > 768) {
-      const getScrollDistance = () => workTrack.scrollWidth - window.innerWidth + 140;
+    if (fluxTrack && fluxCards.length > 0) {
+      let currentProgress = 0;
+      let targetProgress = 0;
+      let isDragging = false;
+      let startX = 0;
+      let dragStartProgress = 0;
+      const totalCards = fluxCards.length;
 
-      gsap.to(workTrack, {
-        x: () => -getScrollDistance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: workSection,
-          pin: true,
-          anticipatePin: 1,
-          scrub: 1.2,
-          start: "top top",
-          end: () => `+=${Math.max(1800, getScrollDistance() * 1.6)}`,
-          invalidateOnRefresh: true,
-        }
+      function updateFluxStage(prog) {
+        const isMobile = window.innerWidth < 640;
+        const cardWidth = isMobile ? 310 : 370;
+        const spacing = cardWidth * 0.95;
+        const depthFactor = isMobile ? 120 : 180;
+        const maxAngle = isMobile ? 35 : 42;
+
+        fluxCards.forEach((card, idx) => {
+          const delta = idx - prog;
+          const absDelta = Math.abs(delta);
+
+          const x = delta * spacing;
+          const z = -Math.pow(absDelta, 1.35) * depthFactor;
+          const rotateY = Math.max(-maxAngle, Math.min(maxAngle, delta * -22));
+          const scale = Math.max(0.72, 1 - absDelta * 0.12);
+          const opacity = Math.max(0.18, 1 - absDelta * 0.28);
+          const zIndex = Math.round(100 - absDelta * 10);
+
+          card.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+          card.style.opacity = opacity;
+          card.style.zIndex = zIndex;
+        });
+
+        const activeIdx = Math.max(0, Math.min(totalCards - 1, Math.round(prog)));
+        fluxDots.forEach((dot, i) => {
+          if (i === activeIdx) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      function renderLoop() {
+        currentProgress += (targetProgress - currentProgress) * 0.12;
+        updateFluxStage(currentProgress);
+        requestAnimationFrame(renderLoop);
+      }
+      requestAnimationFrame(renderLoop);
+
+      if (btnPrev) {
+        btnPrev.addEventListener("click", () => {
+          targetProgress = Math.max(0, Math.round(targetProgress) - 1);
+        });
+      }
+      if (btnNext) {
+        btnNext.addEventListener("click", () => {
+          targetProgress = Math.min(totalCards - 1, Math.round(targetProgress) + 1);
+        });
+      }
+
+      fluxDots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = parseInt(dot.getAttribute("data-index"), 10);
+          targetProgress = idx;
+        });
       });
+
+      fluxCards.forEach((card) => {
+        card.addEventListener("click", (e) => {
+          if (e.target.closest("a")) return;
+          const idx = parseInt(card.getAttribute("data-index"), 10);
+          if (Math.abs(idx - targetProgress) > 0.1) {
+            targetProgress = idx;
+          }
+        });
+      });
+
+      if (fluxTrack) {
+        const onPointerDown = (e) => {
+          isDragging = true;
+          startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+          dragStartProgress = targetProgress;
+        };
+
+        const onPointerMove = (e) => {
+          if (!isDragging) return;
+          const currentX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+          const diff = currentX - startX;
+          const sensitivity = window.innerWidth < 640 ? 240 : 340;
+          targetProgress = Math.max(-0.2, Math.min(totalCards - 0.8, dragStartProgress - diff / sensitivity));
+        };
+
+        const onPointerUp = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          targetProgress = Math.max(0, Math.min(totalCards - 1, Math.round(targetProgress)));
+        };
+
+        fluxTrack.addEventListener("mousedown", onPointerDown);
+        window.addEventListener("mousemove", onPointerMove);
+        window.addEventListener("mouseup", onPointerUp);
+
+        fluxTrack.addEventListener("touchstart", onPointerDown, { passive: true });
+        window.addEventListener("touchmove", onPointerMove, { passive: true });
+        window.addEventListener("touchend", onPointerUp);
+      }
+
+      if (typeof ScrollTrigger !== "undefined" && !isReduced) {
+        ScrollTrigger.create({
+          trigger: "#scene-work",
+          start: "top 75%",
+          end: "bottom 25%",
+          onUpdate: (self) => {
+            if (!isDragging) {
+              targetProgress = self.progress * (totalCards - 1);
+            }
+          }
+        });
+      }
     }
 
     // 7. 3D Card Tilt Physics (M16 Recipe)
