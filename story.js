@@ -832,7 +832,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 8. Package WhatsApp CTA Helper
   window.selectPackageWhatsApp = function(packageName, price) {
     const text = encodeURIComponent(
-      `Hello Web Developers! I am interested in the ${packageName} (${price}) for my business in Gokak / North Karnataka. Please tell me the next step.`
+      `Hi, I want to discuss the ${packageName} (${price}).`
     );
     window.open(`https://wa.me/919860389030?text=${text}`, "_blank");
   };
