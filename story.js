@@ -840,7 +840,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 9. General WhatsApp CTA Helper
   window.openGeneralWhatsApp = function(topic) {
     const text = encodeURIComponent(
-      `Hello Web Developers! I saw your website and would like to chat about: ${topic || "building a website for my shop in Gokak"}.`
+      topic ? `Hi Web Developers, I want to discuss ${topic}.` : `Hi Web Developers, I need a website for my business in Gokak.`
     );
     window.open(`https://wa.me/919860389030?text=${text}`, "_blank");
   };
