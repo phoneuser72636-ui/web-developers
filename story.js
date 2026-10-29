@@ -405,7 +405,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const absDelta = Math.abs(delta);
 
           const x = delta * spacing;
-          const z = -Math.pow(absDelta, 1.35) * depthFactor;
+          const zForward = Math.max(0, 1 - absDelta) * 36;
+          const z = zForward - Math.pow(absDelta, 1.35) * depthFactor;
           const rotateY = Math.max(-maxAngle, Math.min(maxAngle, delta * -22));
           const scale = Math.max(0.72, 1 - absDelta * 0.12);
           const opacity = Math.max(0.18, 1 - absDelta * 0.28);
@@ -414,6 +415,12 @@ document.addEventListener("DOMContentLoaded", () => {
           card.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
           card.style.opacity = opacity;
           card.style.zIndex = zIndex;
+
+          if (absDelta < 0.5) {
+            card.classList.add("active");
+          } else {
+            card.classList.remove("active");
+          }
         });
 
         const activeIdx = Math.max(0, Math.min(totalCards - 1, Math.round(prog)));
@@ -583,6 +590,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       function onPointerMove(e) {
+        // Only trigger fan deck interaction when Card 5 is the active card in view
+        const parentCard = fanDeckStage.closest(".flux-card");
+        if (parentCard && !parentCard.classList.contains("active")) return;
+
         const rect = fanDeckStage.getBoundingClientRect();
         const clientX = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
         const clientY = e.touches && e.touches.length ? e.touches[0].clientY : e.clientY;

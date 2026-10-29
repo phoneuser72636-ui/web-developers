@@ -854,6 +854,11 @@ header.site-header.nav-hidden {
   transition: box-shadow 0.3s var(--ease-out), border-color 0.3s;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  pointer-events: auto;
+}
+
+.flux-card:not(.active) .fan-card {
+  pointer-events: none;
 }
 
 .flux-card:hover {
