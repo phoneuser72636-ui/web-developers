@@ -1902,9 +1902,7 @@ footer.site-footer {
 html.modal-open,
 body.modal-open {
   overflow: hidden !important;
-  height: 100vh !important;
   overscroll-behavior: none !important;
-  touch-action: none !important;
 }
 
 dialog#legal-modal {
@@ -1936,6 +1934,7 @@ dialog#legal-modal[open] {
   flex-direction: column;
   width: 100%;
   max-width: 760px;
+  height: min(85vh, 680px);
   max-height: 85vh;
   background: #FFFFFF;
   border-radius: 20px;
@@ -1945,6 +1944,7 @@ dialog#legal-modal[open] {
   z-index: 99991;
 }
 .legal-modal-header {
+  flex-shrink: 0;
   padding: 18px 24px;
   border-bottom: 1px solid var(--border-line);
   display: flex;
@@ -1978,6 +1978,7 @@ dialog#legal-modal[open] {
   transform: scale(1.08);
 }
 .legal-tabs-row {
+  flex-shrink: 0;
   display: flex;
   background: var(--paper-soft);
   border-bottom: 1px solid var(--border-line);
@@ -2003,11 +2004,29 @@ dialog#legal-modal[open] {
   font-weight: 700;
 }
 .legal-body-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
   padding: 24px 28px;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   font-size: 13.5px;
   line-height: 1.6;
   color: var(--ink-soft);
+}
+.legal-body-scroll::-webkit-scrollbar {
+  width: 7px;
+}
+.legal-body-scroll::-webkit-scrollbar-track {
+  background: #F3F1EC;
+  border-radius: 9999px;
+}
+.legal-body-scroll::-webkit-scrollbar-thumb {
+  background: #D5CEBF;
+  border-radius: 9999px;
+}
+.legal-body-scroll::-webkit-scrollbar-thumb:hover {
+  background: #B3A895;
 }
 .legal-pane {
   display: none;
